@@ -1,3 +1,7 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
+import '../../backend/schema/structs/oline_roleplay_lounge_user_struct.dart';
+import '../oline_roleplay_system_home_page/oline_roleplay_system_home_page_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -707,44 +711,169 @@ class _OlineCosplayVoiceRealmSignupWidgetState
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 153.0, 0.0, 0.0),
-                            child: Container(
-                              width: double.infinity,
-                              height: 56.0,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFF8469E),
-                                    Color(0xFFE74DFF)
-                                  ],
-                                  stops: [0.0, 1.0],
-                                  begin: AlignmentDirectional(-1.0, 0.34),
-                                  end: AlignmentDirectional(1.0, -0.34),
+                            child: GestureDetector(
+                              onTap: () async {
+                                // 获取输入的邮箱和密码
+                                final email =
+                                    _model.textController1.text.trim();
+                                final password =
+                                    _model.textController2.text.trim();
+                                final confirmPassword =
+                                    _model.textController3.text.trim();
+
+                                // 验证邮箱是否输入
+                                if (email.isEmpty) {
+                                  SmartDialog.showNotify(
+                                      msg: 'Please enter your email address!',
+                                      notifyType: NotifyType.warning,
+                                      alignment: Alignment(0, 0));
+
+                                  return;
+                                }
+
+                                // 验证密码是否输入
+                                if (password.isEmpty) {
+                                  SmartDialog.showNotify(
+                                      msg: 'Please enter your password!',
+                                      notifyType: NotifyType.warning,
+                                      alignment: Alignment(0, 0));
+
+                                  return;
+                                }
+
+                                // 验证确认密码是否输入
+                                if (confirmPassword.isEmpty) {
+                                  SmartDialog.showNotify(
+                                      msg: 'Please confirm your password!',
+                                      notifyType: NotifyType.warning,
+                                      alignment: Alignment(0, 0));
+
+                                  return;
+                                }
+
+                                // 验证两次密码是否一致
+                                if (password != confirmPassword) {
+                                  SmartDialog.showNotify(
+                                      msg: 'Passwords do not match!',
+                                      notifyType: NotifyType.warning,
+                                      alignment: Alignment(0, 0));
+
+                                  return;
+                                }
+
+                                // 显示加载动画
+                                SmartDialog.showLoading(
+                                    msg: 'Creating account...');
+
+                                // 模拟网络延迟
+                                await Future.delayed(
+                                    const Duration(milliseconds: 800));
+
+                                // 检查邮箱是否已存在
+                                final users =
+                                    FFAppState().olineImmersiveVoiceUsers;
+                                final emailExists = users.any((user) =>
+                                    user.olineRoleplayLoungeUserEmail == email);
+
+                                if (emailExists) {
+                                  SmartDialog.dismiss();
+                                  SmartDialog.showNotify(
+                                      msg: 'This email is already registered!',
+                                      notifyType: NotifyType.error,
+                                      alignment: Alignment(0, 0));
+
+                                  return;
+                                }
+
+                                // 获取新用户ID（当前用户数量）
+                                final newUserId = users.length;
+
+                                // 创建新用户
+                                final newUser = OlineRoleplayLoungeUserStruct
+                                    .fromSerializableMap(
+                                  jsonDecode(
+                                    '{"OlineRoleplayLoungeUser_id":"$newUserId",'
+                                    '"OlineRoleplayLoungeUser_email":"$email",'
+                                    '"OlineRoleplayLoungeUser_password":"$password",'
+                                    '"OlineRoleplayLoungeUser_avator":"assets/images/giidffughduiohgd_divyshuifoghsdiufg.png",'
+                                    '"OlineRoleplayLoungeUser_name":"Visitor",'
+                                    '"OlineRoleplayLoungeUser_describe":"",'
+                                    '"OlineRoleplayLoungeUser_balance":"0",'
+                                    '"OlineRoleplayLoungeUser_blocklist":"[]"}',
+                                  ),
+                                );
+
+                                // 添加新用户到列表
+                                FFAppState().update(() {
+                                  FFAppState().olineImmersiveVoiceUsers = [
+                                    ...users,
+                                    newUser,
+                                  ];
+                                });
+
+                                // 保存用户ID到登录token
+                                FFAppState().olinePersonaUniverseLoginToken =
+                                    newUserId;
+
+                                // 关闭加载
+                                SmartDialog.dismiss();
+
+                                // 显示成功提示
+                                SmartDialog.showNotify(
+                                    msg: 'Account created successfully!',
+                                    notifyType: NotifyType.error,
+                                    alignment: Alignment(0, 0));
+
+                                await Future.delayed(
+                                    const Duration(milliseconds: 2000));
+
+                                // 跳转到主页
+                                if (context.mounted) {
+                                  context.goNamed(
+                                    OlineRoleplaySystemHomePageWidget.routeName,
+                                  );
+                                }
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 56.0,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFFF8469E),
+                                      Color(0xFFE74DFF)
+                                    ],
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-1.0, 0.34),
+                                    end: AlignmentDirectional(1.0, -0.34),
+                                  ),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Sign Up',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.roboto(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Sign Up',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
                               ),
                             ),

@@ -1,3 +1,6 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:oline/backend/schema/structs/oline_roleplay_lounge_user_struct.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -644,44 +647,106 @@ class _OlinePersonaConstellationLoginWidgetState
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 153.0, 0.0, 0.0),
-                            child: Container(
-                              width: double.infinity,
-                              height: 56.0,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFF8469E),
-                                    Color(0xFFE74DFF)
-                                  ],
-                                  stops: [0.0, 1.0],
-                                  begin: AlignmentDirectional(-1.0, 0.34),
-                                  end: AlignmentDirectional(1.0, -0.34),
+                            child: GestureDetector(
+                              onTap: () async {
+                                final email =
+                                    _model.textController1.text.trim();
+                                final password =
+                                    _model.textController2.text.trim();
+
+                                if (email.isEmpty || password.isEmpty) {
+                                  SmartDialog.showNotify(
+                                      msg: 'Please enter email and password!',
+                                      notifyType: NotifyType.warning,
+                                      alignment: Alignment(0, 0));
+
+                                  return;
+                                }
+
+                                // 显示加载动画
+                                SmartDialog.showLoading(msg: 'Log in...');
+
+                                await Future.delayed(
+                                    const Duration(milliseconds: 2000));
+
+                                final users =
+                                    FFAppState().olineImmersiveVoiceUsers;
+                                OlineRoleplayLoungeUserStruct? matchedUser;
+
+                                for (var user in users) {
+                                  if (user.olineRoleplayLoungeUserEmail ==
+                                          email &&
+                                      user.olineRoleplayLoungeUserPassword ==
+                                          password) {
+                                    matchedUser = user;
+                                    break;
+                                  }
+                                }
+                                SmartDialog.dismiss();
+                                if (matchedUser != null) {
+                                  FFAppState().olinePersonaUniverseLoginToken =
+                                      matchedUser.olineRoleplayLoungeUserId;
+                                  SmartDialog.showNotify(
+                                      msg: 'Login successful!',
+                                      notifyType: NotifyType.success,
+                                      alignment: Alignment(0, 0));
+
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 1600));
+
+                                  // 跳转到主页
+                                  if (context.mounted) {
+                                    context.goNamed(
+                                        'OlineRoleplaySystem_home_page');
+                                  }
+                                } else {
+                                  // 登录失败提示
+                                  SmartDialog.showNotify(
+                                      msg: 'Invalid email or password!',
+                                      notifyType: NotifyType.error,
+                                      alignment: Alignment(0, 0));
+                                }
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 56.0,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFFF8469E),
+                                      Color(0xFFE74DFF)
+                                    ],
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-1.0, 0.34),
+                                    end: AlignmentDirectional(1.0, -0.34),
+                                  ),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Login',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.roboto(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Login',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
                               ),
                             ),

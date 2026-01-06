@@ -1,3 +1,5 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +19,12 @@ class OlineImmersiveRoleplayHubSplashWidget extends StatefulWidget {
 }
 
 class _OlineImmersiveRoleplayHubSplashWidgetState
-    extends State<OlineImmersiveRoleplayHubSplashWidget> {
+    extends State<OlineImmersiveRoleplayHubSplashWidget>
+    with SingleTickerProviderStateMixin {
   late OlineImmersiveRoleplayHubSplashModel _model;
+  late AnimationController _animationController;
+  late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -27,13 +33,41 @@ class _OlineImmersiveRoleplayHubSplashWidgetState
     super.initState();
     _model = createModel(context, () => OlineImmersiveRoleplayHubSplashModel());
 
-    // On page load action.
+    // 初始化动画控制器
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+
+    // 淡入动画
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    // 缩放动画
+    _scaleAnimation = Tween<double>(begin: 0.8, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeOutBack,
+      ),
+    );
+
+    // 启动动画
+    _animationController.forward();
+
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      SmartDialog.showLoading(msg: 'Loading...');
+
       await Future.delayed(
         Duration(
-          milliseconds: 2000,
+          milliseconds: 3000,
         ),
       );
+
+      SmartDialog.dismiss();
 
       context.pushNamed(
         OlineCharacterFlowStartLoginWidget.routeName,
@@ -49,6 +83,7 @@ class _OlineImmersiveRoleplayHubSplashWidgetState
 
   @override
   void dispose() {
+    _animationController.dispose();
     _model.dispose();
 
     super.dispose();
@@ -65,11 +100,22 @@ class _OlineImmersiveRoleplayHubSplashWidgetState
         key: scaffoldKey,
         body: Stack(
           children: [
-            Image.asset(
-              'assets/images/dfhgudifghOIUD_dfihgdufigHO.png',
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.cover,
+            AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) {
+                return FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: Image.asset(
+                      'assets/images/dfhgudifghOIUD_dfihgdufigHO.png',
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),

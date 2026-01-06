@@ -8,20 +8,17 @@ import 'package:from_css_color/from_css_color.dart';
 import 'dart:math' show pow, pi, sin;
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
+import 'package:oline/flutter_flow/uploaded_file.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
-import 'uploaded_file.dart';
+
 import 'platform_utils/platform_util.dart';
 
 import '../main.dart';
 
-
-export 'lat_lng.dart';
-export 'place.dart';
-export 'uploaded_file.dart';
 export '../app_state.dart';
 export '../app_constants.dart';
 export 'flutter_flow_model.dart';
@@ -59,91 +56,6 @@ Color colorFromCssString(String color, {Color? defaultColor}) {
     return fromCssColor(color);
   } catch (_) {}
   return defaultColor ?? Colors.black;
-}
-
-enum FormatType {
-  decimal,
-  percent,
-  scientific,
-  compact,
-  compactLong,
-  custom,
-}
-
-enum DecimalType {
-  automatic,
-  periodDecimal,
-  commaDecimal,
-}
-
-String formatNumber(
-  num? value, {
-  required FormatType formatType,
-  DecimalType? decimalType,
-  String? currency,
-  bool toLowerCase = false,
-  String? format,
-  String? locale,
-}) {
-  if (value == null) {
-    return '';
-  }
-  var formattedValue = '';
-  switch (formatType) {
-    case FormatType.decimal:
-      switch (decimalType!) {
-        case DecimalType.automatic:
-          formattedValue = NumberFormat.decimalPattern().format(value);
-          break;
-        case DecimalType.periodDecimal:
-          if (currency != null) {
-            formattedValue = NumberFormat('#,##0.00', 'en_US').format(value);
-          } else {
-            formattedValue = NumberFormat.decimalPattern('en_US').format(value);
-          }
-          break;
-        case DecimalType.commaDecimal:
-          if (currency != null) {
-            formattedValue = NumberFormat('#,##0.00', 'es_PA').format(value);
-          } else {
-            formattedValue = NumberFormat.decimalPattern('es_PA').format(value);
-          }
-          break;
-      }
-      break;
-    case FormatType.percent:
-      formattedValue = NumberFormat.percentPattern().format(value);
-      break;
-    case FormatType.scientific:
-      formattedValue = NumberFormat.scientificPattern().format(value);
-      if (toLowerCase) {
-        formattedValue = formattedValue.toLowerCase();
-      }
-      break;
-    case FormatType.compact:
-      formattedValue = NumberFormat.compact().format(value);
-      break;
-    case FormatType.compactLong:
-      formattedValue = NumberFormat.compactLong().format(value);
-      break;
-    case FormatType.custom:
-      final hasLocale = locale != null && locale.isNotEmpty;
-      formattedValue =
-          NumberFormat(format, hasLocale ? locale : null).format(value);
-  }
-
-  if (formattedValue.isEmpty) {
-    return value.toString();
-  }
-
-  if (currency != null) {
-    final currencySymbol = currency.isNotEmpty
-        ? currency
-        : NumberFormat.simpleCurrency().format(0.0).substring(0, 1);
-    formattedValue = '$currencySymbol$formattedValue';
-  }
-
-  return formattedValue;
 }
 
 DateTime get getCurrentTimestamp => DateTime.now();

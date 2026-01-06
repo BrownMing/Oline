@@ -1,3 +1,5 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -708,44 +710,112 @@ class _OlineCosplayEngineForgetPasswordWidgetState
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 153.0, 0.0, 0.0),
-                            child: Container(
-                              width: double.infinity,
-                              height: 56.0,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color(0xFFF8469E),
-                                    Color(0xFFE74DFF)
-                                  ],
-                                  stops: [0.0, 1.0],
-                                  begin: AlignmentDirectional(-1.0, 0.34),
-                                  end: AlignmentDirectional(1.0, -0.34),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                final email =
+                                    _model.textController1?.text ?? '';
+                                final newPassword =
+                                    _model.textController2?.text ?? '';
+                                final confirmPassword =
+                                    _model.textController3?.text ?? '';
+
+                                // 验证输入
+                                if (email.isEmpty) {
+                                  SmartDialog.showToast('Please enter email');
+                                  return;
+                                }
+                                if (newPassword.isEmpty) {
+                                  SmartDialog.showToast(
+                                      'Please enter new password');
+                                  return;
+                                }
+                                if (confirmPassword.isEmpty) {
+                                  SmartDialog.showToast(
+                                      'Please confirm password');
+                                  return;
+                                }
+                                if (newPassword != confirmPassword) {
+                                  SmartDialog.showToast(
+                                      'Passwords do not match');
+                                  return;
+                                }
+                                if (newPassword.length < 6) {
+                                  SmartDialog.showToast(
+                                      'Password must be at least 6 characters');
+                                  return;
+                                }
+
+                                // 查找用户
+                                final users =
+                                    FFAppState().olineImmersiveVoiceUsers;
+                                final userIndex = users.indexWhere(
+                                  (user) =>
+                                      user.olineRoleplayLoungeUserEmail ==
+                                      email,
+                                );
+
+                                if (userIndex == -1) {
+                                  SmartDialog.showToast('Email not found');
+                                  return;
+                                }
+
+                                // 更新密码
+                                FFAppState()
+                                    .updateOlineImmersiveVoiceUsersAtIndex(
+                                  userIndex,
+                                  (user) => user
+                                    ..olineRoleplayLoungeUserPassword =
+                                        newPassword,
+                                );
+
+                                SmartDialog.showToast(
+                                    'Password updated successfully');
+                                context.safePop();
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 56.0,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFFF8469E),
+                                      Color(0xFFE74DFF)
+                                    ],
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(-1.0, 0.34),
+                                    end: AlignmentDirectional(1.0, -0.34),
+                                  ),
+                                  borderRadius: BorderRadius.circular(100.0),
                                 ),
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Save',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.roboto(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'Save',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
+                                  ),
                                 ),
                               ),
                             ),
