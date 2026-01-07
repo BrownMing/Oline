@@ -91,7 +91,7 @@ class _OlineInCharacterVoiceWorldInfomationsWidgetState
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
-                          child: Image.network(
+                          child: Image.asset(
                             FFAppState()
                                 .olineImmersiveVoiceUsers
                                 .elementAtOrNull(FFAppState()
@@ -233,39 +233,87 @@ class _OlineInCharacterVoiceWorldInfomationsWidgetState
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Container(
-                                width: 94.0,
-                                height: 32.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/eruhdfuiogsdfg_dfhudfgiodfg.png',
-                                    ).image,
+                              // Posts 标签
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () {
+                                  setState(() {
+                                    _model.selectedTabIndex = 0;
+                                  });
+                                },
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.linear,
+                                  width: 94.0,
+                                  height: 32.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.asset(
+                                        _model.selectedTabIndex == 0
+                                            ? 'assets/images/rhdufghoidfoughu_dfighdufgh.png'
+                                            : 'assets/images/eruhdfuiogsdfg_dfhudfgiodfg.png',
+                                      ).image,
+                                    ),
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: 90.0,
-                                height: 32.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/rguyishdfuidofg_dfuiyghdufhgio.png',
-                                    ).image,
+                              // Likes 标签
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () {
+                                  setState(() {
+                                    _model.selectedTabIndex = 1;
+                                  });
+                                },
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.linear,
+                                  width: 90.0,
+                                  height: 32.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.asset(
+                                        _model.selectedTabIndex == 1
+                                            ? 'assets/images/rdhfuighodg_dfoguidfhgioud.png'
+                                            : 'assets/images/rguyishdfuidofg_dfuiyghdufhgio.png',
+                                      ).image,
+                                    ),
                                   ),
                                 ),
                               ),
-                              Container(
-                                width: 120.0,
-                                height: 32.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/sdhuidfhgoidf_vuisdufhguidfgo.png',
-                                    ).image,
+                              // My Room 标签
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () {
+                                  setState(() {
+                                    _model.selectedTabIndex = 2;
+                                  });
+                                },
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.linear,
+                                  width: 120.0,
+                                  height: 32.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.asset(
+                                        _model.selectedTabIndex == 2
+                                            ? 'assets/images/rgudihfgoudfg_dsfgudiofjgio.png'
+                                            : 'assets/images/sdhuidfhgoidf_vuisdufhguidfgo.png',
+                                      ).image,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -278,394 +326,251 @@ class _OlineInCharacterVoiceWorldInfomationsWidgetState
                                 12.0, 24.0, 12.0, 0.0),
                             child: Builder(
                               builder: (context) {
-                                final olineRoleplayDialogueRealm = FFAppState()
-                                    .olinePersonaChannelPosts
-                                    .where((e) =>
-                                        e.olineFictionVoiceHallPostCreateId ==
-                                        FFAppState()
-                                            .olinePersonaUniverseLoginToken)
-                                    .toList();
-                                if (olineRoleplayDialogueRealm.isEmpty) {
-                                  return Center(
-                                    child:
-                                        OlineVoiceRoleplayContinuumEmptyWidget(),
+                                // Posts 标签 - 我发布的帖子
+                                if (_model.selectedTabIndex == 0) {
+                                  final olineRoleplayDialogueRealm = FFAppState()
+                                      .olinePersonaChannelPosts
+                                      .where((e) =>
+                                          e.olineFictionVoiceHallPostCreateId ==
+                                          FFAppState()
+                                              .olinePersonaUniverseLoginToken)
+                                      .toList();
+                                  if (olineRoleplayDialogueRealm.isEmpty) {
+                                    return Center(
+                                      child:
+                                          OlineVoiceRoleplayContinuumEmptyWidget(),
+                                    );
+                                  }
+
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount:
+                                        olineRoleplayDialogueRealm.length,
+                                    separatorBuilder: (_, __) =>
+                                        SizedBox(height: 24.0),
+                                    itemBuilder: (context,
+                                        olineRoleplayDialogueRealmIndex) {
+                                      final olineRoleplayDialogueRealmItem =
+                                          olineRoleplayDialogueRealm[
+                                              olineRoleplayDialogueRealmIndex];
+                                      return _buildPostItem(
+                                          context,
+                                          olineRoleplayDialogueRealmItem,
+                                          olineRoleplayDialogueRealmIndex);
+                                    },
                                   );
                                 }
 
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: olineRoleplayDialogueRealm.length,
-                                  separatorBuilder: (_, __) =>
-                                      SizedBox(height: 24.0),
-                                  itemBuilder: (context,
-                                      olineRoleplayDialogueRealmIndex) {
-                                    final olineRoleplayDialogueRealmItem =
-                                        olineRoleplayDialogueRealm[
-                                            olineRoleplayDialogueRealmIndex];
-                                    return InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.pushNamed(
-                                          OlineCharacterImmersionHallFindDetailsWidget
-                                              .routeName,
-                                          queryParameters: {
-                                            'olineFictionalPersonaDomainPost':
-                                                serializeParam(
-                                              olineRoleplayDialogueRealmItem
-                                                  .olineFictionVoiceHallPostId,
-                                              ParamType.int,
-                                            ),
-                                            'olineRoleplayEchoSanctumUserid':
-                                                serializeParam(
-                                              olineRoleplayDialogueRealmItem
-                                                  .olineFictionVoiceHallPostCreateId,
-                                              ParamType.int,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType: PageTransitionType
-                                                  .rightToLeft,
-                                            ),
-                                          },
-                                        );
-                                      },
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            width: 40.0,
-                                            height: 40.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.network(
-                                              FFAppState()
-                                                  .olineImmersiveVoiceUsers
-                                                  .elementAtOrNull(
-                                                      olineRoleplayDialogueRealmItem
-                                                          .olineFictionVoiceHallPostCreateId)!
-                                                  .olineRoleplayLoungeUserAvator,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          Flexible(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      12.0, 0.0, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(olineRoleplayDialogueRealmItem.olineFictionVoiceHallPostCreateId)?.olineRoleplayLoungeUserName}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .roboto(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color:
-                                                              Color(0xFF270D2B),
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Text(
-                                                    dateTimeFormat(
-                                                        "relative",
-                                                        olineRoleplayDialogueRealmItem
-                                                            .olineFictionVoiceHallPostCreateTime!),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .roboto(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color:
-                                                              Color(0xFFACA4B0),
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 14.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      olineRoleplayDialogueRealmItem
-                                                          .olineFictionVoiceHallPostDescribe,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .roboto(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Color(
-                                                                    0xFF270D2B),
-                                                                fontSize: 16.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 12.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          child: Image.network(
-                                                            olineRoleplayDialogueRealmItem
-                                                                .olineFictionVoiceHallPostShow
-                                                                .firstOrNull!,
-                                                            width: 144.0,
-                                                            height: 144.0,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ].divide(SizedBox(
-                                                          width: 11.0)),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 12.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .olinePersonaVoiceChronicleLikeModels
-                                                                    .getModel(
-                                                                  olineRoleplayDialogueRealmItem
-                                                                      .olineFictionVoiceHallPostId
-                                                                      .toString(),
-                                                                  olineRoleplayDialogueRealmIndex,
-                                                                ),
-                                                                updateCallback: () =>
-                                                                    safeSetState(
-                                                                        () {}),
-                                                                updateOnChange:
-                                                                    true,
-                                                                child:
-                                                                    OlinePersonaVoiceChronicleLikeWidget(
-                                                                  key: Key(
-                                                                    'Keye7o_${olineRoleplayDialogueRealmItem.olineFictionVoiceHallPostId.toString()}',
-                                                                  ),
-                                                                  parameter1:
-                                                                      olineRoleplayDialogueRealmItem
-                                                                          .olineFictionVoiceHallPostId,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          6.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                '${olineRoleplayDialogueRealmItem.olineFictionVoiceHallPostLikeUsers.length.toString()}',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .roboto(
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: Color(
-                                                                          0xFFACA4B0),
-                                                                      fontSize:
-                                                                          12.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      24.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Container(
-                                                                width: 24.0,
-                                                                height: 24.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  image:
-                                                                      DecorationImage(
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    image: Image
-                                                                        .asset(
-                                                                      'assets/images/ryuihdugdfuiog_bhuidfhguiodf.png',
-                                                                    ).image,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            6.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  '${olineRoleplayDialogueRealmItem.olineFictionVoiceHallPostComments.length.toString()}',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .roboto(
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: Color(
-                                                                            0xFFACA4B0),
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                // Likes 标签 - 我喜欢的帖子
+                                if (_model.selectedTabIndex == 1) {
+                                  final likedPosts = FFAppState()
+                                      .olinePersonaChannelPosts
+                                      .where((e) => e
+                                          .olineFictionVoiceHallPostLikeUsers
+                                          .contains(FFAppState()
+                                              .olinePersonaUniverseLoginToken))
+                                      .toList();
+                                  if (likedPosts.isEmpty) {
+                                    return Center(
+                                      child:
+                                          OlineVoiceRoleplayContinuumEmptyWidget(),
                                     );
-                                  },
-                                );
+                                  }
+
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: likedPosts.length,
+                                    separatorBuilder: (_, __) =>
+                                        SizedBox(height: 24.0),
+                                    itemBuilder: (context, index) {
+                                      final postItem = likedPosts[index];
+                                      return _buildPostItem(
+                                          context, postItem, index);
+                                    },
+                                  );
+                                }
+
+                                // My Room 标签 - 我创建的语音聊天室
+                                if (_model.selectedTabIndex == 2) {
+                                  final myRooms = FFAppState()
+                                      .olineVoiceRoleFieldChatRooms
+                                      .where((e) =>
+                                          e.olineVoiceMaskRealmChatRoomCreateId ==
+                                          FFAppState()
+                                              .olinePersonaUniverseLoginToken)
+                                      .toList();
+                                  if (myRooms.isEmpty) {
+                                    return Center(
+                                      child:
+                                          OlineVoiceRoleplayContinuumEmptyWidget(),
+                                    );
+                                  }
+
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: myRooms.length,
+                                    separatorBuilder: (_, __) =>
+                                        SizedBox(height: 16.0),
+                                    itemBuilder: (context, index) {
+                                      final roomItem = myRooms[index];
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            OlineCosplayCollectiveChatRoomWidget
+                                                .routeName,
+                                            queryParameters: {
+                                              'olineVoiceActingRealmChatRoomId':
+                                                  serializeParam(
+                                                roomItem
+                                                    .olineVoiceMaskRealmChatRoomId,
+                                                ParamType.int,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .rightToLeft,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFFCF7FF),
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft:
+                                                      Radius.circular(16.0),
+                                                  bottomLeft:
+                                                      Radius.circular(16.0),
+                                                ),
+                                                child: Image.asset(
+                                                  roomItem
+                                                      .olineVoiceMaskRealmChatRoomShow,
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12.0, 12.0,
+                                                          12.0, 12.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        roomItem
+                                                            .olineVoiceMaskRealmChatRoomName,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .roboto(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                              color: Color(
+                                                                  0xFF270D2B),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                      SizedBox(height: 4.0),
+                                                      Text(
+                                                        roomItem
+                                                            .olineVoiceMaskRealmChatRoomCreateType,
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .roboto(),
+                                                              color: Color(
+                                                                  0xFFACA4B0),
+                                                              fontSize: 12.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                      ),
+                                                      SizedBox(height: 8.0),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.people,
+                                                            color: Color(
+                                                                0xFFACA4B0),
+                                                            size: 16.0,
+                                                          ),
+                                                          SizedBox(width: 4.0),
+                                                          Text(
+                                                            '${roomItem.olineVoiceMaskRealmChatRoomJoinUsers.length + 1}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .roboto(),
+                                                                  color: Color(
+                                                                      0xFFACA4B0),
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+
+                                return SizedBox();
                               },
                             ),
                           ),
@@ -737,6 +642,207 @@ class _OlineInCharacterVoiceWorldInfomationsWidgetState
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildPostItem(BuildContext context, dynamic postItem, int index) {
+    return InkWell(
+      splashColor: Colors.transparent,
+      focusColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: () async {
+        context.pushNamed(
+          OlineCharacterImmersionHallFindDetailsWidget.routeName,
+          queryParameters: {
+            'olineFictionalPersonaDomainPost': serializeParam(
+              postItem.olineFictionVoiceHallPostId,
+              ParamType.int,
+            ),
+            'olineRoleplayEchoSanctumUserid': serializeParam(
+              postItem.olineFictionVoiceHallPostCreateId,
+              ParamType.int,
+            ),
+          }.withoutNulls,
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.rightToLeft,
+            ),
+          },
+        );
+      },
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: 40.0,
+            height: 40.0,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: Image.asset(
+              FFAppState()
+                  .olineImmersiveVoiceUsers
+                  .elementAtOrNull(postItem.olineFictionVoiceHallPostCreateId)!
+                  .olineRoleplayLoungeUserAvator,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Flexible(
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(postItem.olineFictionVoiceHallPostCreateId)?.olineRoleplayLoungeUserName}',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.roboto(
+                            fontWeight: FontWeight.w500,
+                          ),
+                          color: Color(0xFF270D2B),
+                          fontSize: 16.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    dateTimeFormat("relative",
+                        postItem.olineFictionVoiceHallPostCreateTime!),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          font: GoogleFonts.roboto(),
+                          color: Color(0xFFACA4B0),
+                          fontSize: 12.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 14.0, 0.0, 0.0),
+                    child: Text(
+                      postItem.olineFictionVoiceHallPostDescribe,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            font: GoogleFonts.roboto(),
+                            color: Color(0xFF270D2B),
+                            fontSize: 16.0,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12.0),
+                          child: Image.asset(
+                            postItem.olineFictionVoiceHallPostShow.isNotEmpty
+                                ? postItem.olineFictionVoiceHallPostShow.first
+                                : '',
+                            width: 144.0,
+                            height: 144.0,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            wrapWithModel(
+                              model: _model.olinePersonaVoiceChronicleLikeModels
+                                  .getModel(
+                                postItem.olineFictionVoiceHallPostId.toString(),
+                                index,
+                              ),
+                              updateCallback: () => safeSetState(() {}),
+                              updateOnChange: true,
+                              child: OlinePersonaVoiceChronicleLikeWidget(
+                                key: Key(
+                                  'Keye7o_${postItem.olineFictionVoiceHallPostId.toString()}',
+                                ),
+                                parameter1:
+                                    postItem.olineFictionVoiceHallPostId,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  6.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                '${postItem.olineFictionVoiceHallPostLikeUsers.length.toString()}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      color: Color(0xFFACA4B0),
+                                      fontSize: 12.0,
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: 24.0,
+                                height: 24.0,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: Image.asset(
+                                      'assets/images/ryuihdugdfuiog_bhuidfhguiodf.png',
+                                    ).image,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    6.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  '${postItem.olineFictionVoiceHallPostComments.length.toString()}',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.roboto(
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        color: Color(0xFFACA4B0),
+                                        fontSize: 12.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

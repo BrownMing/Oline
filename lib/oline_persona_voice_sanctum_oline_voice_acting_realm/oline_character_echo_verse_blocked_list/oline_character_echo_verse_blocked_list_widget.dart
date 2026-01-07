@@ -147,7 +147,7 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Image.network(
+                                  child: Image.asset(
                                     FFAppState()
                                         .olineImmersiveVoiceUsers
                                         .elementAtOrNull(

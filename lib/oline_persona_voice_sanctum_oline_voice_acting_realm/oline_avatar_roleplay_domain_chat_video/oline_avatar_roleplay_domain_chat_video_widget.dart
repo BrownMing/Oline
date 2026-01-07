@@ -55,7 +55,7 @@ class _OlineAvatarRoleplayDomainChatVideoWidgetState
         key: scaffoldKey,
         body: Stack(
           children: [
-            Image.network(
+            Image.asset(
               FFAppState()
                   .olineImmersiveVoiceUsers
                   .elementAtOrNull(widget.olineCharacterRoleplayVerseID!)!
@@ -96,7 +96,7 @@ class _OlineAvatarRoleplayDomainChatVideoWidgetState
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
-                        child: Image.network(
+                        child: Image.asset(
                           FFAppState()
                               .olineImmersiveVoiceUsers
                               .elementAtOrNull(

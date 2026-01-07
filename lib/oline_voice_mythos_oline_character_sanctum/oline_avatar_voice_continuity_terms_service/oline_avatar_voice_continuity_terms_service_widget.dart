@@ -1,3 +1,6 @@
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'oline_avatar_voice_continuity_terms_service_model.dart';
@@ -24,6 +27,21 @@ class _OlineAvatarVoiceContinuityTermsServiceWidgetState
   late OlineAvatarVoiceContinuityTermsServiceModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  InAppWebViewController? olineCosplayStoryNetwork;
+
+  final GlobalKey olineRoleplayMythicDomain = GlobalKey();
+
+  InAppWebViewSettings olinePersonaExpressionRealm = InAppWebViewSettings(
+    iframeAllowFullscreen: true,
+    useShouldOverrideUrlLoading: true,
+    allowsInlineMediaPlayback: true,
+    transparentBackground: true,
+    iframeAllow: "camera; microphone",
+    mediaPlaybackRequiresUserGesture: false,
+    javaScriptEnabled: true,
+    domStorageEnabled: true,
+    mixedContentMode: MixedContentMode.MIXED_CONTENT_ALWAYS_ALLOW,
+  );
 
   @override
   void initState() {
@@ -94,10 +112,51 @@ class _OlineAvatarVoiceContinuityTermsServiceWidgetState
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          height: double.infinity,
-                          decoration: BoxDecoration(),
+                        child: InAppWebView(
+                          key: olineRoleplayMythicDomain,
+                          initialUrlRequest: URLRequest(
+                              url:
+                                  WebUri(widget.olineCharacterLoreNetworkUrl!)),
+                          initialSettings: olinePersonaExpressionRealm,
+                          onWebViewCreated: (controller) {
+                            olineCosplayStoryNetwork = controller;
+                            controller.addJavaScriptHandler(
+                              handlerName: '',
+                              callback: (args) {},
+                            );
+                          },
+                          onLoadStart: (controller, url) {},
+                          onLoadStop: (controller, url) async {},
+                          onPermissionRequest:
+                              (controller, olineCharacterFableVerse) async {
+                            return PermissionResponse(
+                                resources: olineCharacterFableVerse.resources,
+                                action: PermissionResponseAction.GRANT);
+                          },
+                          onProgressChanged: (controller, chartedMosaic) {},
+                          shouldOverrideUrlLoading: (controller,
+                              olineVoiceRoleplayConstellation) async {
+                            var olineCosplayPersonaFramework =
+                                olineVoiceRoleplayConstellation.request.url!;
+                            if (![
+                              "http",
+                              "https",
+                              "file",
+                              "chrome",
+                              "data",
+                              "javascript",
+                              "about"
+                            ].contains(olineCosplayPersonaFramework.scheme)) {
+                              if (await canLaunchUrl(
+                                  olineCosplayPersonaFramework)) {
+                                await launchUrl(
+                                  olineCosplayPersonaFramework,
+                                );
+                                return NavigationActionPolicy.CANCEL;
+                              }
+                            }
+                            return NavigationActionPolicy.ALLOW;
+                          },
                         ),
                       ),
                     ],

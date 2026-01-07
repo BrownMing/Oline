@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/oline_persona_voice_chronicle_like_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -97,7 +98,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
-                          child: Image.network(
+                          child: Image.asset(
                             FFAppState()
                                 .olineImmersiveVoiceUsers
                                 .elementAtOrNull(
@@ -137,8 +138,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                         HapticFeedback.heavyImpact();
                                         FFAppState()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
-                                          widget
-                                              .olineCosplayPerformanceUserid!,
+                                          widget.olineCosplayPerformanceUserid!,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserFans(
                                               (e) => e.add(FFAppState()
@@ -158,7 +158,9 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                         );
                                         FFAppState().update(() {});
                                       },
-                                      child: Container(
+                                      child: AnimatedContainer(
+                                        duration: Duration(milliseconds: 300),
+                                        curve: Curves.linear,
                                         width: 96.0,
                                         height: 40.0,
                                         decoration: BoxDecoration(
@@ -181,8 +183,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                         HapticFeedback.heavyImpact();
                                         FFAppState()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
-                                          widget
-                                              .olineCosplayPerformanceUserid!,
+                                          widget.olineCosplayPerformanceUserid!,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserFans(
                                               (e) => e.remove(FFAppState()
@@ -202,7 +203,9 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                         );
                                         FFAppState().update(() {});
                                       },
-                                      child: Container(
+                                      child: AnimatedContainer(
+                                        duration: Duration(milliseconds: 300),
+                                        curve: Curves.linear,
                                         width: 96.0,
                                         height: 40.0,
                                         decoration: BoxDecoration(
@@ -218,15 +221,86 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                   }
                                 },
                               ),
-                              Container(
-                                width: 60.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: Image.asset(
-                                      'assets/images/oerhuidfoighSDG_dfiughduifhgoiDF.png',
-                                    ).image,
+                              GestureDetector(
+                                onTap: () async {
+                                  final currentUserId = FFAppState()
+                                      .olinePersonaUniverseLoginToken;
+                                  final otherUserId =
+                                      widget.olineCosplayPerformanceUserid!;
+
+                                  final existingChat = FFAppState()
+                                      .olineCosplayAudioChats
+                                      .where((chat) =>
+                                          (chat.olineVoicePersonaRoleplayChatSendUser ==
+                                                  currentUserId &&
+                                              chat.olineVoicePersonaRoleplayChatReceiveUser ==
+                                                  otherUserId) ||
+                                          (chat.olineVoicePersonaRoleplayChatSendUser ==
+                                                  otherUserId &&
+                                              chat.olineVoicePersonaRoleplayChatReceiveUser ==
+                                                  currentUserId))
+                                      .toList();
+
+                                  int chatId;
+
+                                  if (existingChat.isNotEmpty) {
+                                    chatId = existingChat
+                                        .first.olineVoicePersonaRoleplayChatId;
+                                  } else {
+                                    chatId = FFAppState()
+                                        .olineCosplayAudioChats
+                                        .length;
+                                    FFAppState().addToOlineCosplayAudioChats(
+                                      OlineVoicePersonaRoleplayChatStruct(
+                                        olineVoicePersonaRoleplayChatId: chatId,
+                                        olineVoicePersonaRoleplayChatSendUser:
+                                            currentUserId,
+                                        olineVoicePersonaRoleplayChatReceiveUser:
+                                            otherUserId,
+                                        olineVoicePersonaRoleplayChatLastMessage:
+                                            'Null',
+                                        olineVoicePersonaRoleplayChatLastTime:
+                                            getCurrentTimestamp,
+                                        olineVoicePersonaRoleplayChatUnread: 0,
+                                      ),
+                                    );
+                                    FFAppState().update(() {});
+                                  }
+
+                                  context.pushNamed(
+                                    OlineRoleplayVoiceTheatreMessagesWidget
+                                        .routeName,
+                                    queryParameters: {
+                                      'olineImmersiveVoicePersonaChat':
+                                          serializeParam(
+                                        chatId,
+                                        ParamType.int,
+                                      ),
+                                      'olineRoleplayInteractionFieldUser':
+                                          serializeParam(
+                                        otherUserId,
+                                        ParamType.int,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.rightToLeft,
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Container(
+                                  width: 60.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: Image.asset(
+                                        'assets/images/oerhuidfoighSDG_dfiughduifhgoiDF.png',
+                                      ).image,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -377,7 +451,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.network(
+                                            child: Image.asset(
                                               FFAppState()
                                                   .olineImmersiveVoiceUsers
                                                   .elementAtOrNull(widget
@@ -518,7 +592,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                               BorderRadius
                                                                   .circular(
                                                                       12.0),
-                                                          child: Image.network(
+                                                          child: Image.asset(
                                                             olinePersonaActingSphereItem
                                                                 .olineFictionVoiceHallPostShow
                                                                 .firstOrNull!,
@@ -731,7 +805,16 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                   },
                                                                 ).then((value) =>
                                                                     safeSetState(
-                                                                        () {}));
+                                                                        () {
+                                                                      if (value ==
+                                                                          true) {
+                                                                        Future.delayed(Duration(
+                                                                            milliseconds:
+                                                                                1800));
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      }
+                                                                    }));
                                                               },
                                                               child: Container(
                                                                 width: 24.0,
@@ -828,7 +911,12 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                             ),
                           );
                         },
-                      ).then((value) => safeSetState(() {}));
+                      ).then((value) => safeSetState(() {
+                            if (value == true) {
+                              Future.delayed(Duration(milliseconds: 1800));
+                              Navigator.pop(context);
+                            }
+                          }));
                     },
                     child: Container(
                       width: 34.0,

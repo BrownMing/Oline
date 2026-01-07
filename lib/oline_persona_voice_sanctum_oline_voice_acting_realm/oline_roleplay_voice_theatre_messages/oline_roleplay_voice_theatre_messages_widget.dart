@@ -118,7 +118,7 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Image.network(
+                                    child: Image.asset(
                                       FFAppState()
                                           .olineImmersiveVoiceUsers
                                           .elementAtOrNull(widget
@@ -228,7 +228,13 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                           ),
                                         );
                                       },
-                                    ).then((value) => safeSetState(() {}));
+                                    ).then((value) => safeSetState(() {
+                                          if (value == true) {
+                                            Future.delayed(
+                                                Duration(milliseconds: 1800));
+                                            Navigator.pop(context);
+                                          }
+                                        }));
                                   },
                                   child: Container(
                                     width: 34.0,
@@ -288,8 +294,8 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         if (olineCosplayVoiceAssemblageItem
-                                                    .olinePersonaStageMessageContent !=
-                                                '')
+                                                .olinePersonaStageMessageContent !=
+                                            '')
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -300,7 +306,7 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
-                                                child: Image.network(
+                                                child: Image.asset(
                                                   FFAppState()
                                                       .olineImmersiveVoiceUsers
                                                       .elementAtOrNull(widget
@@ -436,8 +442,8 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       if (olineCosplayVoiceAssemblageItem
-                                                  .olinePersonaStageMessageContent !=
-                                              '')
+                                              .olinePersonaStageMessageContent !=
+                                          '')
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
@@ -568,7 +574,7 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                                 decoration: BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
-                                                child: Image.network(
+                                                child: Image.asset(
                                                   FFAppState()
                                                       .olineImmersiveVoiceUsers
                                                       .elementAtOrNull(FFAppState()
@@ -581,8 +587,8 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                           ],
                                         ),
                                       if (olineCosplayVoiceAssemblageItem
-                                                  .olinePersonaStageMessageAudio !=
-                                              '')
+                                              .olinePersonaStageMessageAudio !=
+                                          '')
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -743,7 +749,7 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                                   decoration: BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
-                                                  child: Image.network(
+                                                  child: Image.asset(
                                                     FFAppState()
                                                         .olineImmersiveVoiceUsers
                                                         .elementAtOrNull(
@@ -777,7 +783,7 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 16.0, 16.0, 0.0),
+                            20.0, 16.0, 16.0, 34.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -996,7 +1002,8 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  _model.olinePersonaDialogueVerseShow = true;
+                                  _model.olinePersonaDialogueVerseShow =
+                                      !_model.olinePersonaDialogueVerseShow!;
                                   safeSetState(() {});
                                 },
                                 child: Container(

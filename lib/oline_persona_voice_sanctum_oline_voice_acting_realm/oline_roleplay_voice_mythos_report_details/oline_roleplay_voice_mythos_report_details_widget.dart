@@ -1,3 +1,5 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -139,26 +141,68 @@ class _OlineRoleplayVoiceMythosReportDetailsWidgetState
 
                           return Column(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children:
                                 List.generate(olineCharacterSpeechMythos.length,
                                     (olineCharacterSpeechMythosIndex) {
                               final olineCharacterSpeechMythosItem =
                                   olineCharacterSpeechMythos[
                                       olineCharacterSpeechMythosIndex];
-                              return Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFCF7FF),
-                                  borderRadius: BorderRadius.circular(100.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12.0, 8.0, 12.0, 8.0),
-                                  child: Text(
-                                    '${olineCharacterSpeechMythosItem}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.roboto(
+                              final isSelected = _model.selectedReasonIndex ==
+                                  olineCharacterSpeechMythosIndex;
+                              return InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () {
+                                  setState(() {
+                                    _model.selectedReasonIndex =
+                                        olineCharacterSpeechMythosIndex;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        isSelected ? null : Color(0xFFFCF7FF),
+                                    gradient: isSelected
+                                        ? LinearGradient(
+                                            colors: [
+                                              Color(0xFFF8469E),
+                                              Color(0xFFE74DFF)
+                                            ],
+                                            stops: [0.0, 1.0],
+                                            begin:
+                                                AlignmentDirectional(-1.0, 0.0),
+                                            end: AlignmentDirectional(1.0, 0.0),
+                                          )
+                                        : null,
+                                    borderRadius: BorderRadius.circular(100.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 8.0, 12.0, 8.0),
+                                    child: Text(
+                                      '${olineCharacterSpeechMythosItem}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.roboto(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: isSelected
+                                                ? Colors.white
+                                                : Color(0xFFACA4B0),
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -168,18 +212,7 @@ class _OlineRoleplayVoiceMythosReportDetailsWidgetState
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color: Color(0xFFACA4B0),
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
+                                    ),
                                   ),
                                 ),
                               );
@@ -317,6 +350,9 @@ class _OlineRoleplayVoiceMythosReportDetailsWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           Navigator.pop(context);
+                          SmartDialog.showNotify(
+                              msg: 'Report Successfull！',
+                              notifyType: NotifyType.success);
                         },
                         child: Container(
                           width: double.infinity,

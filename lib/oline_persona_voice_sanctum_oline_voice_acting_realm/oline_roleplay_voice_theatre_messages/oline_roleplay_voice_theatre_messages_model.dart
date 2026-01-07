@@ -9,13 +9,9 @@ import 'package:record/record.dart';
 
 class OlineRoleplayVoiceTheatreMessagesModel
     extends FlutterFlowModel<OlineRoleplayVoiceTheatreMessagesWidget> {
-  ///  Local state fields for this page.
 
-  bool? olinePersonaDialogueVerseShow = false;
+  bool? olinePersonaDialogueVerseShow;
 
-  ///  State fields for stateful widgets in this page.
-
-  // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;

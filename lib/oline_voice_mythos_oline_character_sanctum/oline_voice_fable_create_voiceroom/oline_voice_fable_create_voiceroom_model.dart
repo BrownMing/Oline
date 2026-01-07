@@ -1,12 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:image_picker/image_picker.dart';
 import 'oline_voice_fable_create_voiceroom_widget.dart'
     show OlineVoiceFableCreateVoiceroomWidget;
 import 'package:flutter/material.dart';
 
 class OlineVoiceFableCreateVoiceroomModel
     extends FlutterFlowModel<OlineVoiceFableCreateVoiceroomWidget> {
-  ///  Local state fields for this component.
-
   List<String> olineCosplayPersonaSystem = [
     'American comics',
     'Manga',
@@ -26,12 +25,17 @@ class OlineVoiceFableCreateVoiceroomModel
           updateFn(olineCosplayPersonaSystem[index]);
 
   String? olineImmersiveTalkMatrix;
-
   String? olinePersonaRoleplayCore;
 
-  ///  State fields for stateful widgets in this component.
+  // 选中的类型索引
+  int? selectedTypeIndex;
 
-  // State field(s) for TextField widget.
+  // 上传的图片路径
+  String? uploadedImagePath;
+
+  // 图片选择器
+  final ImagePicker _picker = ImagePicker();
+
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
@@ -43,5 +47,14 @@ class OlineVoiceFableCreateVoiceroomModel
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();
+  }
+
+  // 选择图片
+  Future<void> pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      uploadedImagePath = image.path;
+      olineImmersiveTalkMatrix = image.path;
+    }
   }
 }

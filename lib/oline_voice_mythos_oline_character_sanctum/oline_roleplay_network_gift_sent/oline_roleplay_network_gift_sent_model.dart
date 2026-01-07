@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class OlineRoleplayNetworkGiftSentModel
     extends FlutterFlowModel<OlineRoleplayNetworkGiftSentWidget> {
+  int? selectedGiftIndex;
   @override
   void initState(BuildContext context) {}
 

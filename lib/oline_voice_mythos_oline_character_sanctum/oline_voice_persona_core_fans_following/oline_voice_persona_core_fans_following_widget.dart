@@ -131,13 +131,22 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                           EdgeInsetsDirectional.fromSTEB(12.0, 25.0, 12.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          final olineImmersivePersonaRealm = FFAppState()
-                                  .olineImmersiveVoiceUsers
-                                  .elementAtOrNull(FFAppState()
-                                      .olinePersonaUniverseLoginToken)
-                                  ?.olineRoleplayLoungeUserFans
-                                  .toList() ??
-                              [];
+                          final olineImmersivePersonaRealm =
+                              widget.olineCosplayVoiceContinuum == 'Fans'
+                                  ? FFAppState()
+                                          .olineImmersiveVoiceUsers
+                                          .elementAtOrNull(FFAppState()
+                                              .olinePersonaUniverseLoginToken)
+                                          ?.olineRoleplayLoungeUserFans
+                                          .toList() ??
+                                      []
+                                  : FFAppState()
+                                          .olineImmersiveVoiceUsers
+                                          .elementAtOrNull(FFAppState()
+                                              .olinePersonaUniverseLoginToken)
+                                          ?.olineRoleplayLoungeUserFollowings
+                                          .toList() ??
+                                      [];
 
                           return ListView.separated(
                             padding: EdgeInsets.zero,
@@ -165,7 +174,7 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                         decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
-                                        child: Image.network(
+                                        child: Image.asset(
                                           FFAppState()
                                               .olineImmersiveVoiceUsers
                                               .elementAtOrNull(

@@ -221,7 +221,7 @@ class _OlineRoleplayMatrixVoiceRoomsWidgetState
                                           decoration: BoxDecoration(
                                             image: DecorationImage(
                                               fit: BoxFit.cover,
-                                              image: Image.network(
+                                              image: Image.asset(
                                                 olinePersonaVoiceConstellationItem
                                                     .olineVoiceMaskRealmChatRoomShow,
                                               ).image,
@@ -342,29 +342,43 @@ class _OlineRoleplayMatrixVoiceRoomsWidgetState
                                             ],
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  12.0, 0.0, 0.0, 21.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 24.0, 0.0, 0.0),
-                                                child: Text(
-                                                  '${olinePersonaVoiceConstellationItem.olineVoiceMaskRealmChatRoomName}',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font:
-                                                            GoogleFonts.roboto(
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 0.0, 21.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 24.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    '${olinePersonaVoiceConstellationItem.olineVoiceMaskRealmChatRoomName}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .roboto(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color:
+                                                              Color(0xFF270D2B),
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           fontStyle:
@@ -373,136 +387,127 @@ class _OlineRoleplayMatrixVoiceRoomsWidgetState
                                                                   .bodyMedium
                                                                   .fontStyle,
                                                         ),
-                                                        color:
-                                                            Color(0xFF270D2B),
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                                  ),
                                                 ),
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Builder(
-                                                    builder: (context) {
-                                                      final olineCharacterExpressionVerse =
-                                                          olinePersonaVoiceConstellationItem
-                                                              .olineVoiceMaskRealmChatRoomJoinUsers
-                                                              .toList();
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Builder(
+                                                      builder: (context) {
+                                                        final olineCharacterExpressionVerse =
+                                                            olinePersonaVoiceConstellationItem
+                                                                .olineVoiceMaskRealmChatRoomJoinUsers
+                                                                .toList();
 
-                                                      return Stack(
-                                                        children: List.generate(
-                                                            olineCharacterExpressionVerse
-                                                                .length,
-                                                            (olineCharacterExpressionVerseIndex) {
-                                                          final olineCharacterExpressionVerseItem =
-                                                              olineCharacterExpressionVerse[
-                                                                  olineCharacterExpressionVerseIndex];
-                                                          return Padding(
-                                                            padding: EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    valueOrDefault<
-                                                                        double>(
-                                                                      olineCharacterExpressionVerseItem *
-                                                                          20,
+                                                        return Stack(
+                                                          children: List.generate(
+                                                              olineCharacterExpressionVerse
+                                                                  .length,
+                                                              (olineCharacterExpressionVerseIndex) {
+                                                            final olineCharacterExpressionVerseItem =
+                                                                olineCharacterExpressionVerse[
+                                                                    olineCharacterExpressionVerseIndex];
+                                                            return Padding(
+                                                              padding: EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      valueOrDefault<
+                                                                          double>(
+                                                                        olineCharacterExpressionVerseIndex *
+                                                                            20,
+                                                                        0.0,
+                                                                      ),
                                                                       0.0,
-                                                                    ),
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                            child: Container(
-                                                              width: 24.0,
-                                                              height: 24.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                image:
-                                                                    DecorationImage(
-                                                                  fit: BoxFit
-                                                                      .cover,
-                                                                  image: Image
-                                                                      .network(
-                                                                    FFAppState()
-                                                                        .olineImmersiveVoiceUsers
-                                                                        .elementAtOrNull(
-                                                                            olineCharacterExpressionVerseItem)!
-                                                                        .olineRoleplayLoungeUserAvator,
-                                                                  ).image,
-                                                                ),
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  width: 1.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                              child: Container(
+                                                                width: 24.0,
+                                                                height: 24.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  image:
+                                                                      DecorationImage(
+                                                                    fit: BoxFit
+                                                                        .cover,
+                                                                    image: Image
+                                                                        .asset(
+                                                                      FFAppState()
+                                                                          .olineImmersiveVoiceUsers
+                                                                          .elementAtOrNull(
+                                                                              olineCharacterExpressionVerseItem)!
+                                                                          .olineRoleplayLoungeUserAvator,
+                                                                    ).image,
+                                                                  ),
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                    width: 1.0,
+                                                                  ),
                                                                 ),
                                                               ),
-                                                            ),
+                                                            );
+                                                          }),
+                                                        );
+                                                      },
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          0, 0, 12, 0),
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            OlineCosplayCollectiveChatRoomWidget
+                                                                .routeName,
+                                                            queryParameters: {
+                                                              'olineVoiceFictionContinuumChatid':
+                                                                  serializeParam(
+                                                                olinePersonaVoiceConstellationItem
+                                                                    .olineVoiceMaskRealmChatRoomId,
+                                                                ParamType.int,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .rightToLeft,
+                                                              ),
+                                                            },
                                                           );
-                                                        }),
-                                                      );
-                                                    },
-                                                  ),
-                                                  InkWell(
-                                                    splashColor:
-                                                        Colors.transparent,
-                                                    focusColor:
-                                                        Colors.transparent,
-                                                    hoverColor:
-                                                        Colors.transparent,
-                                                    highlightColor:
-                                                        Colors.transparent,
-                                                    onTap: () async {
-                                                      context.pushNamed(
-                                                        OlineCosplayCollectiveChatRoomWidget
-                                                            .routeName,
-                                                        queryParameters: {
-                                                          'olineVoiceFictionContinuumChatid':
-                                                              serializeParam(
-                                                            olinePersonaVoiceConstellationItem
-                                                                .olineVoiceMaskRealmChatRoomId,
-                                                            ParamType.int,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          kTransitionInfoKey:
-                                                              TransitionInfo(
-                                                            hasTransition: true,
-                                                            transitionType:
-                                                                PageTransitionType
-                                                                    .rightToLeft,
-                                                          ),
                                                         },
-                                                      );
-                                                    },
-                                                    child: Container(
-                                                      width: 76.0,
-                                                      height: 30.0,
-                                                      decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          fit: BoxFit.cover,
-                                                          image: Image.asset(
-                                                            'assets/images/oorhuisdhfoiuGOSDFG_difghudifhgio.png',
-                                                          ).image,
+                                                        child: Container(
+                                                          width: 76.0,
+                                                          height: 30.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            image:
+                                                                DecorationImage(
+                                                              fit: BoxFit.cover,
+                                                              image:
+                                                                  Image.asset(
+                                                                'assets/images/oorhuisdhfoiuGOSDFG_difghudifhgio.png',
+                                                              ).image,
+                                                            ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 
 class OlineRoleplayVoiceMythosReportDetailsModel
     extends FlutterFlowModel<OlineRoleplayVoiceMythosReportDetailsWidget> {
-  ///  Local state fields for this component.
-
   List<String> olineVoiceRoleplayExchange = [
     'Harassment',
     'Inappropriate language',
@@ -26,9 +24,8 @@ class OlineRoleplayVoiceMythosReportDetailsModel
       olineVoiceRoleplayExchange[index] =
           updateFn(olineVoiceRoleplayExchange[index]);
 
-  ///  State fields for stateful widgets in this component.
+  int? selectedReasonIndex;
 
-  // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;

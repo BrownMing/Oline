@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 class OlineInCharacterVoiceWorldInfomationsModel
     extends FlutterFlowModel<OlineInCharacterVoiceWorldInfomationsWidget> {
-  ///  State fields for stateful widgets in this page.
 
-  // Models for OlinePersonaVoiceChronicle_like dynamic component.
+  int selectedTabIndex = 0;
+
   late FlutterFlowDynamicModels<OlinePersonaVoiceChronicleLikeModel>
       olinePersonaVoiceChronicleLikeModels;
 

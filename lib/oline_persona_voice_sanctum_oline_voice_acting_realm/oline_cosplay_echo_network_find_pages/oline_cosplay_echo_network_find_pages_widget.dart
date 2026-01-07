@@ -206,7 +206,7 @@ class _OlineCosplayEchoNetworkFindPagesWidgetState
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
-                                      child: Image.network(
+                                      child: Image.asset(
                                         FFAppState()
                                             .olineImmersiveVoiceUsers
                                             .elementAtOrNull(
@@ -373,7 +373,7 @@ class _OlineCosplayEchoNetworkFindPagesWidgetState
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             16.0),
-                                                    child: Image.network(
+                                                    child: Image.asset(
                                                       olineCharacterImmersionNetworkItem
                                                           .olineFictionVoiceHallPostShow
                                                           .firstOrNull!,

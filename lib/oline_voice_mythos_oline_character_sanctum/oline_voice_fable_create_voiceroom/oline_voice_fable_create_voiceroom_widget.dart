@@ -1,9 +1,11 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'oline_voice_fable_create_voiceroom_model.dart';
 export 'oline_voice_fable_create_voiceroom_model.dart';
 
@@ -46,7 +48,7 @@ class _OlineVoiceFableCreateVoiceroomWidgetState
     context.watch<FFAppState>();
 
     return Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Padding(
@@ -269,16 +271,43 @@ class _OlineVoiceFableCreateVoiceroomWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               6.0, 0.0, 0.0, 16.0),
-                          child: Container(
-                            width: 80.0,
-                            height: 80.0,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: Image.asset(
-                                  'assets/images/ireuhidfhugdosFG_vbdhfguiodfHG.png',
-                                ).image,
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await _model.pickImage();
+                              safeSetState(() {});
+                            },
+                            child: Container(
+                              width: 80.0,
+                              height: 80.0,
+                              decoration: BoxDecoration(
+                                color: _model.uploadedImagePath != null
+                                    ? Colors.transparent
+                                    : null,
+                                image: _model.uploadedImagePath == null
+                                    ? DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.asset(
+                                          'assets/images/ireuhidfhugdosFG_vbdhfguiodfHG.png',
+                                        ).image,
+                                      )
+                                    : null,
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
+                              child: _model.uploadedImagePath != null
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      child: Image.file(
+                                        File(_model.uploadedImagePath!),
+                                        width: 80.0,
+                                        height: 80.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : null,
                             ),
                           ),
                         ),
@@ -334,8 +363,8 @@ class _OlineVoiceFableCreateVoiceroomWidgetState
                                   _model.olineCosplayPersonaSystem.toList();
 
                               return Wrap(
-                                spacing: 0.0,
-                                runSpacing: 0.0,
+                                spacing: 12.0,
+                                runSpacing: 8.0,
                                 alignment: WrapAlignment.start,
                                 crossAxisAlignment: WrapCrossAlignment.start,
                                 direction: Axis.horizontal,
@@ -348,21 +377,68 @@ class _OlineVoiceFableCreateVoiceroomWidgetState
                                   final olineCharacterVoiceFrameworkItem =
                                       olineCharacterVoiceFramework[
                                           olineCharacterVoiceFrameworkIndex];
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFFCF7FF),
-                                      borderRadius:
-                                          BorderRadius.circular(100.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 8.0, 12.0, 8.0),
-                                      child: Text(
-                                        '${olineCharacterVoiceFrameworkItem}',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.roboto(
+                                  final isSelected = _model.selectedTypeIndex ==
+                                      olineCharacterVoiceFrameworkIndex;
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () {
+                                      safeSetState(() {
+                                        _model.selectedTypeIndex =
+                                            olineCharacterVoiceFrameworkIndex;
+                                        _model.olinePersonaRoleplayCore =
+                                            olineCharacterVoiceFrameworkItem;
+                                      });
+                                    },
+                                    child: AnimatedContainer(
+                                      duration: Duration(milliseconds: 200),
+                                      decoration: BoxDecoration(
+                                        gradient: isSelected
+                                            ? LinearGradient(
+                                                colors: [
+                                                  Color(0xFFF8469E),
+                                                  Color(0xFFE74DFF)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                end: AlignmentDirectional(
+                                                    1.0, 0.0),
+                                              )
+                                            : null,
+                                        color: isSelected
+                                            ? null
+                                            : Color(0xFFFCF7FF),
+                                        borderRadius:
+                                            BorderRadius.circular(100.0),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            12.0, 8.0, 12.0, 8.0),
+                                        child: Text(
+                                          '${olineCharacterVoiceFrameworkItem}',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.roboto(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color: isSelected
+                                                    ? Colors.white
+                                                    : Color(0xFFACA4B0),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -372,18 +448,7 @@ class _OlineVoiceFableCreateVoiceroomWidgetState
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
-                                              color: Color(0xFFACA4B0),
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
+                                        ),
                                       ),
                                     ),
                                   );
@@ -404,35 +469,50 @@ class _OlineVoiceFableCreateVoiceroomWidgetState
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      if (_model.textController.text != '') {
-                        if (_model.olineImmersiveTalkMatrix != null &&
-                            _model.olineImmersiveTalkMatrix != '') {
-                          if (_model.olinePersonaRoleplayCore != null &&
-                              _model.olinePersonaRoleplayCore != '') {
-                            FFAppState().addToOlineVoiceRoleFieldChatRooms(
-                                OlineVoiceMaskRealmChatRoomStruct(
-                              olineVoiceMaskRealmChatRoomId: FFAppState()
-                                  .olineVoiceRoleFieldChatRooms
-                                  .length,
-                              olineVoiceMaskRealmChatRoomName:
-                                  _model.textController.text,
-                              olineVoiceMaskRealmChatRoomShow:
-                                  _model.olineImmersiveTalkMatrix,
-                              olineVoiceMaskRealmChatRoomNumber: 0,
-                              olineVoiceMaskRealmChatRoomJoinUsers: [0, 1],
-                              olineVoiceMaskRealmChatRoomHot: false,
-                              olineVoiceMaskRealmChatRoomCreateTime:
-                                  getCurrentTimestamp,
-                              olineVoiceMaskRealmChatRoomCreateId:
-                                  FFAppState().olinePersonaUniverseLoginToken,
-                              olineVoiceMaskRealmChatRoomCreateType:
-                                  _model.olinePersonaRoleplayCore,
-                            ));
-                            FFAppState().update(() {});
-                            Navigator.pop(context);
-                          }
-                        }
+                      // 验证房间名称
+                      if (_model.textController.text.isEmpty) {
+                        SmartDialog.showToast('Please enter room name');
+                        return;
                       }
+
+                      // 验证图片
+                      if (_model.olineImmersiveTalkMatrix == null ||
+                          _model.olineImmersiveTalkMatrix!.isEmpty) {
+                        SmartDialog.showToast('Please upload room image');
+                        return;
+                      }
+
+                      // 验证类型
+                      if (_model.olinePersonaRoleplayCore == null ||
+                          _model.olinePersonaRoleplayCore!.isEmpty) {
+                        SmartDialog.showToast('Please select room type');
+                        return;
+                      }
+
+                      // 创建房间
+                      FFAppState().addToOlineVoiceRoleFieldChatRooms(
+                          OlineVoiceMaskRealmChatRoomStruct(
+                        olineVoiceMaskRealmChatRoomId:
+                            FFAppState().olineVoiceRoleFieldChatRooms.length,
+                        olineVoiceMaskRealmChatRoomName:
+                            _model.textController.text,
+                        olineVoiceMaskRealmChatRoomShow:
+                            _model.olineImmersiveTalkMatrix!,
+                        olineVoiceMaskRealmChatRoomNumber: 0,
+                        olineVoiceMaskRealmChatRoomJoinUsers: [],
+                        olineVoiceMaskRealmChatRoomHot: false,
+                        olineVoiceMaskRealmChatRoomCreateTime:
+                            getCurrentTimestamp,
+                        olineVoiceMaskRealmChatRoomCreateId:
+                            FFAppState().olinePersonaUniverseLoginToken,
+                        olineVoiceMaskRealmChatRoomCreateType:
+                            _model.olinePersonaRoleplayCore!,
+                        olineVoiceMaskRealmChatRoomComments: [],
+                      ));
+                      FFAppState().update(() {});
+
+                      SmartDialog.showToast('Room created successfully!');
+                      Navigator.pop(context);
                     },
                     child: Container(
                       width: double.infinity,

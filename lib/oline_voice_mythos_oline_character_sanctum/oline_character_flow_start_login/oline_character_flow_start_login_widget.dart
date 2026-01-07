@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -96,7 +99,36 @@ class _OlineCharacterFlowStartLoginWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        FFAppState().olinePersonaUniverseLoginToken = 0;
+                        // 生成新用户ID
+                        final users = FFAppState().olineImmersiveVoiceUsers;
+                        final newUserId = users.isEmpty
+                            ? 0
+                            : users
+                                    .map((u) => u.olineRoleplayLoungeUserId)
+                                    .reduce((a, b) => a > b ? a : b) +
+                                1;
+
+                        // 创建新用户
+                        final newUser =
+                            OlineRoleplayLoungeUserStruct.fromSerializableMap(
+                          jsonDecode(
+                              '{"OlineRoleplayLoungeUser_id":"$newUserId",'
+                              '"OlineRoleplayLoungeUser_email":"visitor$newUserId@guest.com",'
+                              '"OlineRoleplayLoungeUser_password":"123456",'
+                              '"OlineRoleplayLoungeUser_avator":"assets/images/giidffughduiohgd_divyshuifoghsdiufg.png",'
+                              '"OlineRoleplayLoungeUser_name":"Visitor$newUserId",'
+                              '"OlineRoleplayLoungeUser_describe":"New cosplay voice enthusiast~",'
+                              '"OlineRoleplayLoungeUser_balance":"100",'
+                              '"OlineRoleplayLoungeUser_followings":"[]",'
+                              '"OlineRoleplayLoungeUser_fans":"[]",'
+                              '"OlineRoleplayLoungeUser_blocklist":"[]"}'),
+                        );
+
+                        // 添加新用户到列表
+                        FFAppState().addToOlineImmersiveVoiceUsers(newUser);
+
+                        // 设置登录token为新用户ID
+                        FFAppState().olinePersonaUniverseLoginToken = newUserId;
                         FFAppState().update(() {});
 
                         context.pushNamed(
@@ -208,35 +240,41 @@ class _OlineCharacterFlowStartLoginWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 8.0, 0.0),
-                          child: Theme(
-                            data: ThemeData(
-                              checkboxTheme: CheckboxThemeData(
-                                visualDensity: VisualDensity.compact,
-                                materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                          child: GestureDetector(
+                            onTap: () async {
+                              safeSetState(() => _model.checkboxValue =
+                                  !(_model.checkboxValue ?? true));
+                            },
+                            child: Container(
+                              width: 20.0,
+                              height: 20.0,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6.0),
+                                color: Color(0x7FFFFFFF),
+                              ),
+                              child: Center(
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 200),
+                                  curve: Curves.easeInOut,
+                                  width: (_model.checkboxValue ?? true)
+                                      ? 15.0
+                                      : 0.0,
+                                  height: (_model.checkboxValue ?? true)
+                                      ? 15.0
+                                      : 0.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFFF8469E),
+                                        Color(0xFFE74DFF)
+                                      ],
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              unselectedWidgetColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                            ),
-                            child: Checkbox(
-                              value: _model.checkboxValue ??= true,
-                              onChanged: (newValue) async {
-                                safeSetState(
-                                    () => _model.checkboxValue = newValue!);
-                              },
-                              side: (FlutterFlowTheme.of(context).alternate !=
-                                      null)
-                                  ? BorderSide(
-                                      width: 2,
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    )
-                                  : null,
-                              activeColor: Color(0x7FFFFFFF),
-                              checkColor: FlutterFlowTheme.of(context).info,
                             ),
                           ),
                         ),

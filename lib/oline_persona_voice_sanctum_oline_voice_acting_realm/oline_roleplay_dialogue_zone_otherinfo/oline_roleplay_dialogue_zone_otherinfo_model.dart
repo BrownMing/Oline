@@ -7,9 +7,6 @@ import 'package:flutter/material.dart';
 
 class OlineRoleplayDialogueZoneOtherinfoModel
     extends FlutterFlowModel<OlineRoleplayDialogueZoneOtherinfoWidget> {
-  ///  State fields for stateful widgets in this page.
-
-  // Models for OlinePersonaVoiceChronicle_like dynamic component.
   late FlutterFlowDynamicModels<OlinePersonaVoiceChronicleLikeModel>
       olinePersonaVoiceChronicleLikeModels;
 

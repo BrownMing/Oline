@@ -1,3 +1,5 @@
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/oline_persona_voice_sanctum_oline_voice_acting_realm/oline_roleplay_voice_mythos_report_details/oline_roleplay_voice_mythos_report_details_widget.dart';
@@ -195,7 +197,10 @@ class _OlineVoiceRoleInteractionReportBlackWidgetState
                                 ),
                             );
                             FFAppState().update(() {});
-                            Navigator.pop(context);
+                            Navigator.pop(context, true);
+                            SmartDialog.showNotify(
+                                msg: 'Blocked Succeed!',
+                                notifyType: NotifyType.success);
                           },
                           child: Container(
                             width: 169.0,

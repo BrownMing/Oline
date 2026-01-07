@@ -8,14 +8,13 @@ import 'package:from_css_color/from_css_color.dart';
 import 'dart:math' show pow, pi, sin;
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
+import 'package:oline/flutter_flow/platform_utils/platform_util_stub.dart';
 import 'package:oline/flutter_flow/uploaded_file.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
-
-import 'platform_utils/platform_util.dart';
 
 import '../main.dart';
 

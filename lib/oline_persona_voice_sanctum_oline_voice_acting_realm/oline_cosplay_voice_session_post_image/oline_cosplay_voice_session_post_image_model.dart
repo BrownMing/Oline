@@ -1,12 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:image_picker/image_picker.dart';
 import 'oline_cosplay_voice_session_post_image_widget.dart'
     show OlineCosplayVoiceSessionPostImageWidget;
 import 'package:flutter/material.dart';
 
 class OlineCosplayVoiceSessionPostImageModel
     extends FlutterFlowModel<OlineCosplayVoiceSessionPostImageWidget> {
-  ///  Local state fields for this page.
-
   List<String> olineInCharacterVoiceContinuity = [];
   void addToOlineInCharacterVoiceContinuity(String item) =>
       olineInCharacterVoiceContinuity.add(item);
@@ -21,9 +20,8 @@ class OlineCosplayVoiceSessionPostImageModel
       olineInCharacterVoiceContinuity[index] =
           updateFn(olineInCharacterVoiceContinuity[index]);
 
-  ///  State fields for stateful widgets in this page.
+  final ImagePicker _picker = ImagePicker();
 
-  // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
@@ -35,5 +33,24 @@ class OlineCosplayVoiceSessionPostImageModel
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();
+  }
+
+  // 选择多张图片
+  Future<void> pickImages() async {
+    final List<XFile> images = await _picker.pickMultiImage();
+    if (images.isNotEmpty) {
+      for (var image in images) {
+        if (olineInCharacterVoiceContinuity.length < 9) {
+          olineInCharacterVoiceContinuity.add(image.path);
+        }
+      }
+    }
+  }
+
+  // 删除指定索引的图片
+  void removeImageAt(int index) {
+    if (index >= 0 && index < olineInCharacterVoiceContinuity.length) {
+      olineInCharacterVoiceContinuity.removeAt(index);
+    }
   }
 }

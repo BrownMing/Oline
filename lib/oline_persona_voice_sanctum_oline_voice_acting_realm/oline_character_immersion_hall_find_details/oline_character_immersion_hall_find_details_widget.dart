@@ -130,8 +130,7 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                       queryParameters: {
                                         'olineCosplayPerformanceUserid':
                                             serializeParam(
-                                          widget
-                                              .olineRoleplayEchoSanctumUserid,
+                                          widget.olineRoleplayEchoSanctumUserid,
                                           ParamType.int,
                                         ),
                                       }.withoutNulls,
@@ -152,7 +151,7 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Image.network(
+                                  child: Image.asset(
                                     FFAppState()
                                         .olineImmersiveVoiceUsers
                                         .elementAtOrNull(widget
@@ -212,14 +211,19 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                             MediaQuery.viewInsetsOf(context),
                                         child:
                                             OlineVoiceRoleInteractionReportBlackWidget(
-                                          olineAvatarNarrativeConstellation:
-                                              widget
-                                                  .olineRoleplayEchoSanctumUserid!,
+                                          olineAvatarNarrativeConstellation: widget
+                                              .olineRoleplayEchoSanctumUserid!,
                                         ),
                                       ),
                                     );
                                   },
-                                ).then((value) => safeSetState(() {}));
+                                ).then((value) => safeSetState(() {
+                                      if (value == true) {
+                                        Future.delayed(
+                                            Duration(milliseconds: 1800));
+                                        Navigator.pop(context);
+                                      }
+                                    }));
                               },
                               child: Container(
                                 width: 34.0,
@@ -331,7 +335,7 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               12.0),
-                                                      child: Image.network(
+                                                      child: Image.asset(
                                                         olineCosplayNarrativeHallItem,
                                                         width: double.infinity,
                                                         height: double.infinity,
@@ -520,7 +524,7 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                             decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
-                                            child: Image.network(
+                                            child: Image.asset(
                                               FFAppState()
                                                   .olineImmersiveVoiceUsers
                                                   .elementAtOrNull(
@@ -652,7 +656,16 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                                       );
                                                     },
                                                   ).then((value) =>
-                                                      safeSetState(() {}));
+                                                      safeSetState(() {
+                                                        if (value == true) {
+                                                          Future.delayed(
+                                                              Duration(
+                                                                  milliseconds:
+                                                                      1800));
+                                                          Navigator.pop(
+                                                              context);
+                                                        }
+                                                      }));
                                                 },
                                                 child: Container(
                                                   width: 24.0,
@@ -832,8 +845,7 @@ class _OlineCharacterImmersionHallFindDetailsWidgetState
                                     if (_model.textController.text != '') {
                                       FFAppState()
                                           .updateOlinePersonaChannelPostsAtIndex(
-                                        widget
-                                            .olineFictionalPersonaDomainPost!,
+                                        widget.olineFictionalPersonaDomainPost!,
                                         (e) => e
                                           ..updateOlineFictionVoiceHallPostComments(
                                             (e) => e.add(

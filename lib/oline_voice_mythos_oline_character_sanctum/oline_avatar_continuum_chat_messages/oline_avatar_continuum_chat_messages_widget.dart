@@ -269,8 +269,8 @@ class _OlineAvatarContinuumChatMessagesWidgetState
                             },
                           );
 
-                          FFAppState().olineCharacterLoreSphereSystemMsg = [];
-                          FFAppState().update(() {});
+                          // FFAppState().olineCharacterLoreSphereSystemMsg = [];
+                          // FFAppState().update(() {});
                         },
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -475,7 +475,7 @@ class _OlineAvatarContinuumChatMessagesWidgetState
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Image.network(
+                                    child: Image.asset(
                                       FFAppState()
                                           .olineImmersiveVoiceUsers
                                           .elementAtOrNull(

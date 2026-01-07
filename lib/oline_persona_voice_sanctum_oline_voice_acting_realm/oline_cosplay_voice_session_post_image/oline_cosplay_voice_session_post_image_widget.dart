@@ -1,9 +1,11 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'oline_cosplay_voice_session_post_image_model.dart';
 export 'oline_cosplay_voice_session_post_image_model.dart';
 
@@ -62,6 +64,8 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
             ),
             Column(
               mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(12.0, 50.0, 0.0, 0.0),
@@ -222,50 +226,108 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 50.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                width: 120.0,
-                                height: 120.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16.0),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(1.0, -1.0),
+                          child: Container(
+                            width: double.infinity,
+                            height: 120.0,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  // 显示已选择的图片
+                                  ...List.generate(
+                                    _model
+                                        .olineInCharacterVoiceContinuity.length,
+                                    (index) => Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 12.0, 0.0),
                                       child: Container(
-                                        width: 34.0,
-                                        height: 34.0,
+                                        width: 120.0,
+                                        height: 120.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                              child: Image.file(
+                                                File(_model
+                                                        .olineInCharacterVoiceContinuity[
+                                                    index]),
+                                                width: 120.0,
+                                                height: 120.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  1.0, -1.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () {
+                                                  safeSetState(() {
+                                                    _model.removeImageAt(index);
+                                                  });
+                                                },
+                                                child: Container(
+                                                  width: 34.0,
+                                                  height: 34.0,
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: Image.asset(
+                                                        'assets/images/ruhduiofhgdg_difugudsfhguiodfg.png',
+                                                      ).image,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                  // 上传按钮：没图片时在前面，有图片时在尾部
+                                  if (_model.olineInCharacterVoiceContinuity
+                                          .length <
+                                      9)
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await _model.pickImages();
+                                        safeSetState(() {});
+                                      },
+                                      child: Container(
+                                        width: 120.0,
+                                        height: 120.0,
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: Image.asset(
-                                              'assets/images/ruhduiofhgdg_difugudsfhguiodfg.png',
+                                              'assets/images/_10@3x.png',
                                             ).image,
                                           ),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                ],
                               ),
-                              Container(
-                                width: 120.0,
-                                height: 120.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: Image.asset(
-                                      'assets/images/_10@3x.png',
-                                    ).image,
-                                  ),
-                                  borderRadius: BorderRadius.circular(16.0),
-                                ),
-                              ),
-                            ].divide(SizedBox(width: 12.0)),
+                            ),
                           ),
                         ),
                         Padding(
@@ -277,29 +339,42 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (_model.textController.text != '') {
-                                if (_model.olineInCharacterVoiceContinuity
-                                    .isNotEmpty) {
-                                  FFAppState().addToOlinePersonaChannelPosts(
-                                      OlineFictionVoiceHallPostStruct(
-                                    olineFictionVoiceHallPostId: FFAppState()
-                                        .olinePersonaChannelPosts
-                                        .length,
-                                    olineFictionVoiceHallPostShow:
-                                        _model.olineInCharacterVoiceContinuity,
-                                    olineFictionVoiceHallPostCreateId:
-                                        FFAppState()
-                                            .olinePersonaUniverseLoginToken,
-                                    olineFictionVoiceHallPostDescribe:
-                                        _model.textController.text,
-                                    olineFictionVoiceHallPostLikeUsers: [0, 2],
-                                    olineFictionVoiceHallPostCreateTime:
-                                        getCurrentTimestamp,
-                                  ));
-                                  FFAppState().update(() {});
-                                  context.safePop();
-                                }
+                              // 验证描述
+                              if (_model.textController.text.isEmpty) {
+                                SmartDialog.showToast(
+                                    'Please enter description');
+                                return;
                               }
+
+                              // 验证图片
+                              if (_model
+                                  .olineInCharacterVoiceContinuity.isEmpty) {
+                                SmartDialog.showToast(
+                                    'Please upload at least one image');
+                                return;
+                              }
+
+                              // 发布动态
+                              FFAppState().addToOlinePersonaChannelPosts(
+                                  OlineFictionVoiceHallPostStruct(
+                                olineFictionVoiceHallPostId: FFAppState()
+                                    .olinePersonaChannelPosts
+                                    .length,
+                                olineFictionVoiceHallPostShow:
+                                    _model.olineInCharacterVoiceContinuity,
+                                olineFictionVoiceHallPostCreateId:
+                                    FFAppState().olinePersonaUniverseLoginToken,
+                                olineFictionVoiceHallPostDescribe:
+                                    _model.textController.text,
+                                olineFictionVoiceHallPostLikeUsers: [],
+                                olineFictionVoiceHallPostCreateTime:
+                                    getCurrentTimestamp,
+                                olineFictionVoiceHallPostComments: [],
+                              ));
+                              FFAppState().update(() {});
+
+                              SmartDialog.showToast('Posted successfully!');
+                              context.safePop();
                             },
                             child: Container(
                               width: double.infinity,

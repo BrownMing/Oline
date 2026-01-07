@@ -371,7 +371,7 @@ class _OlineCosplayEngineForgetPasswordWidgetState
                                         autofocus: false,
                                         enabled: true,
                                         textInputAction: TextInputAction.done,
-                                        obscureText: false,
+                                        obscureText: true,
                                         decoration: InputDecoration(
                                           isDense: true,
                                           labelStyle: FlutterFlowTheme.of(
@@ -565,7 +565,7 @@ class _OlineCosplayEngineForgetPasswordWidgetState
                                         autofocus: false,
                                         enabled: true,
                                         textInputAction: TextInputAction.done,
-                                        obscureText: false,
+                                        obscureText: true,
                                         decoration: InputDecoration(
                                           isDense: true,
                                           labelStyle: FlutterFlowTheme.of(

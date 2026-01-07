@@ -43,6 +43,33 @@ class _OlineRoleplaySystemHomePageWidgetState
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
+    final currentUser = FFAppState()
+        .olineImmersiveVoiceUsers
+        .elementAtOrNull(FFAppState().olinePersonaUniverseLoginToken);
+    final blocklist = currentUser?.olineRoleplayLoungeUserBlocklist ?? [];
+
+    final filteredRooms = FFAppState()
+        .olineVoiceRoleFieldChatRooms
+        .where((room) =>
+            !blocklist.contains(room.olineVoiceMaskRealmChatRoomCreateId))
+        .toList();
+
+    final hotRoom = filteredRooms.firstWhere(
+      (room) => room.olineVoiceMaskRealmChatRoomHot == true,
+      orElse: () => filteredRooms.isNotEmpty
+          ? filteredRooms.first
+          : FFAppState().olineVoiceRoleFieldChatRooms.first,
+    );
+
+    final nonHotRooms = filteredRooms
+        .where((room) =>
+            room.olineVoiceMaskRealmChatRoomId !=
+            hotRoom.olineVoiceMaskRealmChatRoomId)
+        .toList();
+    nonHotRooms.shuffle();
+    final smallRoom1 = nonHotRooms.isNotEmpty ? nonHotRooms[0] : hotRoom;
+    final smallRoom2 = nonHotRooms.length > 1 ? nonHotRooms[1] : hotRoom;
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -92,7 +119,7 @@ class _OlineRoleplaySystemHomePageWidgetState
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                           ),
-                          child: Image.network(
+                          child: Image.asset(
                             FFAppState()
                                 .olineImmersiveVoiceUsers
                                 .elementAtOrNull(FFAppState()
@@ -261,58 +288,75 @@ class _OlineRoleplaySystemHomePageWidgetState
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Container(
-                            width: double.infinity,
-                            height: 240.0,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: Image.asset(
-                                  'assets/images/huihdfuigohduifg_xcviguydfhgodhufgo.png',
-                                ).image,
+                          GestureDetector(
+                            onTap: () async {
+                              context.pushNamed(
+                                OlineCosplayEchoNetworkFindPagesWidget
+                                    .routeName,
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.rightToLeft,
+                                  ),
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: 240.0,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: Image.asset(
+                                    'assets/images/huihdfuigohduifg_xcviguydfhgodhufgo.png',
+                                  ).image,
+                                ),
                               ),
-                            ),
-                            child: Stack(
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 1.2),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        context.pushNamed(
-                                          OlineCosplayEchoNetworkFindPagesWidget
-                                              .routeName,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType: PageTransitionType
-                                                  .rightToLeft,
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, 1.2),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 0.0, 0.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            OlineCosplayEchoNetworkFindPagesWidget
+                                                .routeName,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .rightToLeft,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 128.0,
+                                          height: 48.0,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: Image.asset(
+                                                'assets/images/werhuidhoaGUDFG_dufighdufigoHDUFG.png',
+                                              ).image,
                                             ),
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        width: 128.0,
-                                        height: 48.0,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: Image.asset(
-                                              'assets/images/werhuidhoaGUDFG_dufighdufigoHDUFG.png',
-                                            ).image,
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           Padding(
@@ -458,7 +502,7 @@ class _OlineRoleplaySystemHomePageWidgetState
                                       queryParameters: {
                                         'olineVoiceFictionContinuumChatid':
                                             serializeParam(
-                                          0,
+                                          hotRoom.olineVoiceMaskRealmChatRoomId,
                                           ParamType.int,
                                         ),
                                       }.withoutNulls,
@@ -477,10 +521,8 @@ class _OlineRoleplaySystemHomePageWidgetState
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
-                                        image: Image.network(
-                                          FFAppState()
-                                              .olineVoiceRoleFieldChatRooms
-                                              .elementAtOrNull(0)!
+                                        image: Image.asset(
+                                          hotRoom
                                               .olineVoiceMaskRealmChatRoomShow,
                                         ).image,
                                       ),
@@ -553,7 +595,7 @@ class _OlineRoleplaySystemHomePageWidgetState
                                                           ),
                                                         ),
                                                         Text(
-                                                          '${FFAppState().olineVoiceRoleFieldChatRooms.elementAtOrNull(0)?.olineVoiceMaskRealmChatRoomNumber.toString()}',
+                                                          '${hotRoom.olineVoiceMaskRealmChatRoomNumber.toString()}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -616,7 +658,7 @@ class _OlineRoleplaySystemHomePageWidgetState
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 19.0, 0.0, 0.0),
                                             child: Text(
-                                              '${FFAppState().olineVoiceRoleFieldChatRooms.elementAtOrNull(0)?.olineVoiceMaskRealmChatRoomName}',
+                                              '${hotRoom.olineVoiceMaskRealmChatRoomName}',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -651,89 +693,124 @@ class _OlineRoleplaySystemHomePageWidgetState
                                 Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Container(
-                                      width: 110.0,
-                                      height: 110.0,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.network(
-                                            FFAppState()
-                                                .olineVoiceRoleFieldChatRooms
-                                                .elementAtOrNull(1)!
-                                                .olineVoiceMaskRealmChatRoomShow,
-                                          ).image,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          OlineCosplayCollectiveChatRoomWidget
+                                              .routeName,
+                                          queryParameters: {
+                                            'olineVoiceFictionContinuumChatid':
+                                                serializeParam(
+                                              smallRoom1
+                                                  .olineVoiceMaskRealmChatRoomId,
+                                              ParamType.int,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .rightToLeft,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 110.0,
+                                        height: 110.0,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.asset(
+                                              smallRoom1
+                                                  .olineVoiceMaskRealmChatRoomShow,
+                                            ).image,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    6.0, 6.0, 6.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100.0),
-                                                  child: BackdropFilter(
-                                                    filter: ImageFilter.blur(
-                                                      sigmaX: 8.0,
-                                                      sigmaY: 8.0,
-                                                    ),
-                                                    child: Container(
-                                                      width: 49.0,
-                                                      height: 20.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x40000000),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    100.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(6.0, 6.0, 6.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100.0),
+                                                    child: BackdropFilter(
+                                                      filter: ImageFilter.blur(
+                                                        sigmaX: 8.0,
+                                                        sigmaY: 8.0,
                                                       ),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Container(
-                                                            width: 12.0,
-                                                            height: 12.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              image:
-                                                                  DecorationImage(
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                      child: Container(
+                                                        width: 49.0,
+                                                        height: 20.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0x40000000),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      100.0),
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Container(
+                                                              width: 12.0,
+                                                              height: 12.0,
+                                                              decoration:
+                                                                  BoxDecoration(
                                                                 image:
-                                                                    Image.asset(
-                                                                  'assets/images/uyirthdfuigoid_bivydhugfihdofuigHOD.png',
-                                                                ).image,
+                                                                    DecorationImage(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  image: Image
+                                                                      .asset(
+                                                                    'assets/images/uyirthdfuigoid_bivydhugfihdofuigHOD.png',
+                                                                  ).image,
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          Text(
-                                                            '${FFAppState().olineVoiceRoleFieldChatRooms.elementAtOrNull(0)?.olineVoiceMaskRealmChatRoomNumber.toString()}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .roboto(
+                                                            Text(
+                                                              '${smallRoom1.olineVoiceMaskRealmChatRoomNumber.toString()}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .roboto(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500,
@@ -742,146 +819,171 @@ class _OlineRoleplaySystemHomePageWidgetState
                                                                         .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ].divide(SizedBox(
-                                                            width: 4.0)),
+                                                            ),
+                                                          ].divide(SizedBox(
+                                                              width: 4.0)),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    6.0, 0.0, 0.0, 6.0),
-                                            child: Text(
-                                              '${FFAppState().olineVoiceRoleFieldChatRooms.elementAtOrNull(1)?.olineVoiceMaskRealmChatRoomName}',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.roboto(
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(6.0, 0.0, 0.0, 6.0),
+                                              child: Text(
+                                                '${smallRoom1.olineVoiceMaskRealmChatRoomName}'
+                                                    .maybeHandleOverflow(
+                                                        maxChars: 6,
+                                                        replacement: '....'),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.roboto(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
+                                                      color: Colors.white,
                                                       fontStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMedium
                                                               .fontStyle,
                                                     ),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                    Container(
-                                      width: 110.0,
-                                      height: 110.0,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: Image.network(
-                                            FFAppState()
-                                                .olineVoiceRoleFieldChatRooms
-                                                .elementAtOrNull(2)!
-                                                .olineVoiceMaskRealmChatRoomShow,
-                                          ).image,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        context.pushNamed(
+                                          OlineCosplayCollectiveChatRoomWidget
+                                              .routeName,
+                                          queryParameters: {
+                                            'olineVoiceFictionContinuumChatid':
+                                                serializeParam(
+                                              smallRoom2
+                                                  .olineVoiceMaskRealmChatRoomId,
+                                              ParamType.int,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .rightToLeft,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      child: Container(
+                                        width: 110.0,
+                                        height: 110.0,
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.asset(
+                                              smallRoom2
+                                                  .olineVoiceMaskRealmChatRoomShow,
+                                            ).image,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    6.0, 6.0, 6.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100.0),
-                                                  child: BackdropFilter(
-                                                    filter: ImageFilter.blur(
-                                                      sigmaX: 8.0,
-                                                      sigmaY: 8.0,
-                                                    ),
-                                                    child: Container(
-                                                      width: 49.0,
-                                                      height: 20.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x40000000),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                                    100.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(6.0, 6.0, 6.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100.0),
+                                                    child: BackdropFilter(
+                                                      filter: ImageFilter.blur(
+                                                        sigmaX: 8.0,
+                                                        sigmaY: 8.0,
                                                       ),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Container(
-                                                            width: 12.0,
-                                                            height: 12.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              image:
-                                                                  DecorationImage(
-                                                                fit: BoxFit
-                                                                    .cover,
+                                                      child: Container(
+                                                        width: 49.0,
+                                                        height: 20.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0x40000000),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      100.0),
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Container(
+                                                              width: 12.0,
+                                                              height: 12.0,
+                                                              decoration:
+                                                                  BoxDecoration(
                                                                 image:
-                                                                    Image.asset(
-                                                                  'assets/images/uyirthdfuigoid_bivydhugfihdofuigHOD.png',
-                                                                ).image,
+                                                                    DecorationImage(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  image: Image
+                                                                      .asset(
+                                                                    'assets/images/uyirthdfuigoid_bivydhugfihdofuigHOD.png',
+                                                                  ).image,
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          Text(
-                                                            '${FFAppState().olineVoiceRoleFieldChatRooms.elementAtOrNull(2)?.olineVoiceMaskRealmChatRoomNumber.toString()}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .roboto(
+                                                            Text(
+                                                              '${smallRoom2.olineVoiceMaskRealmChatRoomNumber.toString()}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .roboto(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w500,
@@ -890,61 +992,51 @@ class _OlineRoleplaySystemHomePageWidgetState
                                                                         .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ].divide(SizedBox(
-                                                            width: 4.0)),
+                                                            ),
+                                                          ].divide(SizedBox(
+                                                              width: 4.0)),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    6.0, 0.0, 0.0, 6.0),
-                                            child: Text(
-                                              '${FFAppState().olineVoiceRoleFieldChatRooms.elementAtOrNull(2)?.olineVoiceMaskRealmChatRoomName}',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.roboto(
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(6.0, 0.0, 0.0, 6.0),
+                                              child: Text(
+                                                '${smallRoom2.olineVoiceMaskRealmChatRoomName}'
+                                                    .maybeHandleOverflow(
+                                                        maxChars: 6,
+                                                        replacement: '...'),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.roboto(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
+                                                      color: Colors.white,
                                                       fontStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMedium
                                                               .fontStyle,
                                                     ),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ].divide(SizedBox(height: 10.0)),

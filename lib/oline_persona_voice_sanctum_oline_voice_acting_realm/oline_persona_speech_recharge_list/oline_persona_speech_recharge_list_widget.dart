@@ -1,3 +1,5 @@
+import 'package:oline/flutter_flow/iap_service.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +25,15 @@ class _OlinePersonaSpeechRechargeListWidgetState
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  int? _selectedProductIndex;
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => OlinePersonaSpeechRechargeListModel());
+
+    // 初始化 IAP 服务
+    OlinePersonaRechargeManager.initialize();
   }
 
   @override
@@ -34,6 +41,36 @@ class _OlinePersonaSpeechRechargeListWidgetState
     _model.dispose();
 
     super.dispose();
+  }
+
+  // 购买商品
+  Future<void> _purchaseProduct(
+      OlineVoiceCrystalProduct product, int index) async {
+    await OlinePersonaRechargeManager.purchase(
+      context,
+      product,
+      onSuccess: (diamonds) {
+        final currentCoins = FFAppState()
+                .olineImmersiveVoiceUsers
+                .elementAtOrNull(FFAppState().olinePersonaUniverseLoginToken)
+                ?.olineRoleplayLoungeUserBalance ??
+            0;
+
+        FFAppState().updateOlineImmersiveVoiceUsersAtIndex(
+          FFAppState().olinePersonaUniverseLoginToken,
+          (user) =>
+              user..olineRoleplayLoungeUserBalance = currentCoins + diamonds,
+        );
+        FFAppState().update(() {});
+
+        // 充值完成后重置选中状态
+        if (mounted) {
+          setState(() {
+            _selectedProductIndex = null;
+          });
+        }
+      },
+    );
   }
 
   @override
@@ -229,7 +266,7 @@ class _OlinePersonaSpeechRechargeListWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 24.0, 0.0, 0.0),
-                          child: GridView(
+                          child: GridView.builder(
                             padding: EdgeInsets.zero,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -241,43 +278,81 @@ class _OlinePersonaSpeechRechargeListWidgetState
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
-                            children: [
-                              Container(
-                                width: 170.0,
-                                height: 165.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFCF7FF),
-                                  borderRadius: BorderRadius.circular(16.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 12.0, 0.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width: 60.0,
-                                        height: 60.0,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: Image.asset(
-                                              'assets/images/riuhudifhgioud_cuihhdufighudiog.png',
-                                            ).image,
+                            itemCount: OlineCosplayRechargeProducts
+                                .olineVoiceProductList.length,
+                            itemBuilder: (context, index) {
+                              final product = OlineCosplayRechargeProducts
+                                  .olineVoiceProductList[index];
+                              final isSelected = _selectedProductIndex == index;
+                              return GestureDetector(
+                                onTap: () async {
+                                  setState(() {
+                                    _selectedProductIndex = index;
+                                  });
+                                  await _purchaseProduct(product, index);
+                                },
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.linear,
+                                  width: 170.0,
+                                  height: 165.0,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        isSelected ? null : Color(0xFFFCF7FF),
+                                    gradient: isSelected
+                                        ? LinearGradient(
+                                            colors: [
+                                              Color(0xFFF8469E),
+                                              Color(0xFFE74DFF)
+                                            ],
+                                            stops: [0.0, 1.0],
+                                            begin:
+                                                AlignmentDirectional(0.0, -1.0),
+                                            end: AlignmentDirectional(0.0, 1.0),
+                                          )
+                                        : null,
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 12.0, 0.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: 60.0,
+                                          height: 60.0,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: Image.asset(
+                                                'assets/images/riuhudifhgioud_cuihhdufighudiog.png',
+                                              ).image,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Hello World',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.roboto(
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 8.0, 0.0, 0.0),
+                                          child: Text(
+                                            '${product.diamonds}',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.roboto(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Colors.black,
+                                                  fontSize: 24.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
@@ -285,43 +360,67 @@ class _OlinePersonaSpeechRechargeListWidgetState
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                                color: Colors.black,
-                                                fontSize: 24.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 8.0, 0.0, 0.0),
-                                        child: Container(
-                                          width: double.infinity,
-                                          height: 48.0,
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFFACA4B0),
-                                            borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(16.0),
-                                              bottomRight:
-                                                  Radius.circular(16.0),
-                                              topLeft: Radius.circular(0.0),
-                                              topRight: Radius.circular(0.0),
-                                            ),
                                           ),
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Text(
-                                              '\$9.99',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.roboto(
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 8.0, 0.0, 0.0),
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 48.0,
+                                            decoration: BoxDecoration(
+                                              color: isSelected
+                                                  ? null
+                                                  : Color(0xFFACA4B0),
+                                              gradient: isSelected
+                                                  ? LinearGradient(
+                                                      colors: [
+                                                        Color(0xFFFF005E),
+                                                        Color(0xFFFF1C7E),
+                                                        Color(0xFFFF3399)
+                                                      ],
+                                                      stops: [0.0, 0.5453, 1.0],
+                                                      begin:
+                                                          AlignmentDirectional(
+                                                              -1.0, 0.0),
+                                                      end: AlignmentDirectional(
+                                                          1.0, 0.0),
+                                                    )
+                                                  : null,
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(16.0),
+                                                bottomRight:
+                                                    Radius.circular(16.0),
+                                                topLeft: Radius.circular(0.0),
+                                                topRight: Radius.circular(0.0),
+                                              ),
+                                            ),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Text(
+                                                '\$${product.price.toStringAsFixed(2)}',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.roboto(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      fontSize: 16.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontStyle:
@@ -330,27 +429,16 @@ class _OlinePersonaSpeechRechargeListWidgetState
                                                               .bodyMedium
                                                               .fontStyle,
                                                     ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .info,
-                                                    fontSize: 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              );
+                            },
                           ),
                         ),
                       ],
