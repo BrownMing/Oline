@@ -274,7 +274,7 @@ class FFAppState extends ChangeNotifier {
 
   List<OlineVoicePersonaRoleplayChatStruct> _olineCosplayAudioChats = [
     OlineVoicePersonaRoleplayChatStruct.fromSerializableMap(jsonDecode(
-        '{\"OlineVoicePersonaRoleplayChat_id\":\"0\",\"OlineVoicePersonaRoleplayChat_last_message\":\"Hello! Nice to meet you~\",\"OlineVoicePersonaRoleplayChat_last_time\":\"1736265600000\",\"OlineVoicePersonaRoleplayChat_send_user\":\"0\",\"OlineVoicePersonaRoleplayChat_receive_user\":\"2\",\"OlineVoicePersonaRoleplayChat_unread\":\"0\"}'))
+        '{\"OlineVoicePersonaRoleplayChat_id\":\"0\",\"OlineVoicePersonaRoleplayChat_last_message\":\"Hello! Nice to meet you~\",\"OlineVoicePersonaRoleplayChat_last_time\":\"1736265600000\",\"OlineVoicePersonaRoleplayChat_send_user\":\"0\",\"OlineVoicePersonaRoleplayChat_receive_user\":\"2\",\"OlineVoicePersonaRoleplayChat_unread\":\"1\"}'))
   ];
   List<OlineVoicePersonaRoleplayChatStruct> get olineCosplayAudioChats =>
       _olineCosplayAudioChats;
@@ -390,6 +390,32 @@ class FFAppState extends ChangeNotifier {
   set olineCharacterLoreSphereSystemMsg(List<String> value) {
     _olineCharacterLoreSphereSystemMsg = value;
     prefs.setStringList('Oline_olineCharacterLoreSphereSystemMsg', value);
+  }
+
+  void addToOlineCharacterLoreSphereSystemMsg(String value) {
+    _olineCharacterLoreSphereSystemMsg.add(value);
+    prefs.setStringList('Oline_olineCharacterLoreSphereSystemMsg',
+        _olineCharacterLoreSphereSystemMsg);
+    // 添加新消息时显示气泡
+    _olineSystemMsgBadgeVisible = true;
+  }
+
+  void removeFromOlineCharacterLoreSphereSystemMsg(String value) {
+    _olineCharacterLoreSphereSystemMsg.remove(value);
+    prefs.setStringList('Oline_olineCharacterLoreSphereSystemMsg',
+        _olineCharacterLoreSphereSystemMsg);
+  }
+
+  void removeAtIndexFromOlineCharacterLoreSphereSystemMsg(int index) {
+    _olineCharacterLoreSphereSystemMsg.removeAt(index);
+    prefs.setStringList('Oline_olineCharacterLoreSphereSystemMsg',
+        _olineCharacterLoreSphereSystemMsg);
+  }
+
+  bool _olineSystemMsgBadgeVisible = true;
+  bool get olineSystemMsgBadgeVisible => _olineSystemMsgBadgeVisible;
+  set olineSystemMsgBadgeVisible(bool value) {
+    _olineSystemMsgBadgeVisible = value;
   }
 }
 

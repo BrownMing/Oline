@@ -862,7 +862,6 @@ class _OlineCosplayCollectiveChatRoomWidgetState
                                     final durationStr =
                                         '$minutes:${seconds.toString().padLeft(2, '0')}';
 
-                                    // 录音成功，添加语音消息到聊天室
                                     FFAppState()
                                         .updateOlineVoiceRoleFieldChatRoomsAtIndex(
                                       widget.olineVoiceFictionContinuumChatid!,

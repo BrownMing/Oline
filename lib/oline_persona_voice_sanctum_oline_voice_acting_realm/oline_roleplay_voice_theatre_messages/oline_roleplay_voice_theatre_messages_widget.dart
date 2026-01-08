@@ -6,7 +6,6 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:record/record.dart';
 import 'oline_roleplay_voice_theatre_messages_model.dart';
 export 'oline_roleplay_voice_theatre_messages_model.dart';
 
@@ -1027,53 +1026,52 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 12.0, 0.0, 26.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onLongPress: () async {
-                              await startAudioRecording(
-                                context,
-                                audioRecorder: _model.audioRecorder ??=
-                                    AudioRecorder(),
-                              );
+                          child: GestureDetector(
+                            onLongPressStart: (_) async {
+                              await _model.startRecording();
+                              safeSetState(() {});
+                            },
+                            onLongPressEnd: (_) async {
+                              final result = await _model.stopRecording();
+                              safeSetState(() {});
 
-                              await stopAudioRecording(
-                                audioRecorder: _model.audioRecorder,
-                                audioName: 'recordedFileBytes',
-                                onRecordingComplete:
-                                    (audioFilePath, audioBytes) {
-                                  _model.olineRoleplayPersonaContinuum =
-                                      audioFilePath;
-                                  _model.recordedFileBytes = audioBytes;
-                                },
-                              );
+                              if (result != null &&
+                                  result['path'] != null &&
+                                  (result['path'] as String).isNotEmpty) {
+                                final path = result['path'] as String;
+                                final duration = result['duration'] as int;
+                                final durationStr = '${duration}s';
 
-                              FFAppState().addToOlineRoleplayStreamMessages(
-                                  OlinePersonaStageMessageStruct(
-                                olinePersonaStageMessageAudio:
-                                    _model.olineRoleplayPersonaContinuum,
-                                olinePersonaStageMessageAudioTime: '2s',
-                                olinePersonaStageMessageCreateTime:
-                                    getCurrentTimestamp,
-                                olinePersonaStageMessageCreateUser:
-                                    FFAppState().olinePersonaUniverseLoginToken,
-                                olinePersonaStageMessageChatRef:
-                                    widget.olineImmersiveVoicePersonaChat,
-                              ));
-                              FFAppState().updateOlineCosplayAudioChatsAtIndex(
-                                widget.olineImmersiveVoicePersonaChat!,
-                                (e) => e
-                                  ..olineVoicePersonaRoleplayChatLastMessage =
-                                      '(audio)'
-                                  ..olineVoicePersonaRoleplayChatLastTime =
-                                      getCurrentTimestamp
-                                  ..incrementOlineVoicePersonaRoleplayChatUnread(
-                                      1),
-                              );
-                              FFAppState().update(() {});
-
+                                // 录音成功，添加语音消息
+                                FFAppState().addToOlineRoleplayStreamMessages(
+                                    OlinePersonaStageMessageStruct(
+                                  olinePersonaStageMessageAudio: path,
+                                  olinePersonaStageMessageAudioTime:
+                                      durationStr,
+                                  olinePersonaStageMessageCreateTime:
+                                      getCurrentTimestamp,
+                                  olinePersonaStageMessageCreateUser:
+                                      FFAppState()
+                                          .olinePersonaUniverseLoginToken,
+                                  olinePersonaStageMessageChatRef:
+                                      widget.olineImmersiveVoicePersonaChat,
+                                ));
+                                FFAppState()
+                                    .updateOlineCosplayAudioChatsAtIndex(
+                                  widget.olineImmersiveVoicePersonaChat!,
+                                  (e) => e
+                                    ..olineVoicePersonaRoleplayChatLastMessage =
+                                        '[Voice Message]'
+                                    ..olineVoicePersonaRoleplayChatLastTime =
+                                        getCurrentTimestamp
+                                    ..incrementOlineVoicePersonaRoleplayChatUnread(
+                                        1),
+                                );
+                                FFAppState().update(() {});
+                              }
+                            },
+                            onLongPressCancel: () async {
+                              await _model.cancelRecording();
                               safeSetState(() {});
                             },
                             child: Container(
@@ -1087,6 +1085,15 @@ class _OlineRoleplayVoiceTheatreMessagesWidgetState
                                   ).image,
                                 ),
                               ),
+                              child: _model.isRecording
+                                  ? Center(
+                                      child: Icon(
+                                        Icons.mic,
+                                        color: Colors.red,
+                                        size: 32.0,
+                                      ),
+                                    )
+                                  : null,
                             ),
                           ),
                         ),

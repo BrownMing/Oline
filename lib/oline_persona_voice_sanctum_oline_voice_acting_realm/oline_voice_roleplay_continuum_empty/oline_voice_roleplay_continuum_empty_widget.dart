@@ -12,8 +12,12 @@ class OlineVoiceRoleplayContinuumEmptyWidget extends StatefulWidget {
 }
 
 class _OlineVoiceRoleplayContinuumEmptyWidgetState
-    extends State<OlineVoiceRoleplayContinuumEmptyWidget> {
+    extends State<OlineVoiceRoleplayContinuumEmptyWidget>
+    with SingleTickerProviderStateMixin {
   late OlineVoiceRoleplayContinuumEmptyModel _model;
+  late AnimationController _animationController;
+  late Animation<double> _floatAnimation;
+  late Animation<double> _opacityAnimation;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,10 +30,36 @@ class _OlineVoiceRoleplayContinuumEmptyWidgetState
     super.initState();
     _model =
         createModel(context, () => OlineVoiceRoleplayContinuumEmptyModel());
+
+    // 初始化动画控制器
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    );
+
+    // 上下浮动动画
+    _floatAnimation = Tween<double>(begin: 0, end: 10).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    // 透明度动画
+    _opacityAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    // 循环播放动画
+    _animationController.repeat(reverse: true);
   }
 
   @override
   void dispose() {
+    _animationController.dispose();
     _model.maybeDispose();
 
     super.dispose();
@@ -37,15 +67,27 @@ class _OlineVoiceRoleplayContinuumEmptyWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 152.0,
-      height: 168.0,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: Image.asset(
-            'assets/images/gyfughudifhgiu_xcviydufgodfg.png',
-          ).image,
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: Offset(0, -_floatAnimation.value),
+          child: Opacity(
+            opacity: _opacityAnimation.value,
+            child: child,
+          ),
+        );
+      },
+      child: Container(
+        width: 152.0,
+        height: 168.0,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: Image.asset(
+              'assets/images/gyfughudifhgiu_xcviydufgodfg.png',
+            ).image,
+          ),
         ),
       ),
     );

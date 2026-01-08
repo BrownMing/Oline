@@ -258,6 +258,10 @@ class _OlineAvatarContinuumChatMessagesWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+              
+                          FFAppState().olineSystemMsgBadgeVisible = false;
+                          FFAppState().update(() {});
+
                           context.pushNamed(
                             OlinePersonaDrivenVoiceSpaceNotificationsWidget
                                 .routeName,
@@ -268,9 +272,6 @@ class _OlineAvatarContinuumChatMessagesWidgetState
                               ),
                             },
                           );
-
-                          // FFAppState().olineCharacterLoreSphereSystemMsg = [];
-                          // FFAppState().update(() {});
                         },
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -289,8 +290,9 @@ class _OlineAvatarContinuumChatMessagesWidgetState
                               child: Stack(
                                 children: [
                                   if (FFAppState()
-                                      .olineCharacterLoreSphereSystemMsg
-                                      .isNotEmpty)
+                                          .olineCharacterLoreSphereSystemMsg
+                                          .isNotEmpty &&
+                                      FFAppState().olineSystemMsgBadgeVisible)
                                     Align(
                                       alignment:
                                           AlignmentDirectional(1.0, -1.0),

@@ -1,3 +1,4 @@
+import '../../oline_persona_voice_sanctum_oline_voice_acting_realm/oline_voice_roleplay_continuum_empty/oline_voice_roleplay_continuum_empty_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -147,7 +148,11 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                           ?.olineRoleplayLoungeUserFollowings
                                           .toList() ??
                                       [];
-
+                          if (olineImmersivePersonaRealm.isEmpty) {
+                            return Center(
+                                child:
+                                    const OlineVoiceRoleplayContinuumEmptyWidget());
+                          }
                           return ListView.separated(
                             padding: EdgeInsets.zero,
                             shrinkWrap: true,

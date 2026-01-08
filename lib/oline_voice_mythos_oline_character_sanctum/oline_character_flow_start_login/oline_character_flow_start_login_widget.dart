@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -124,13 +126,18 @@ class _OlineCharacterFlowStartLoginWidgetState
                               '"OlineRoleplayLoungeUser_blocklist":"[]"}'),
                         );
 
-                        // 添加新用户到列表
                         FFAppState().addToOlineImmersiveVoiceUsers(newUser);
 
-                        // 设置登录token为新用户ID
                         FFAppState().olinePersonaUniverseLoginToken = newUserId;
                         FFAppState().update(() {});
 
+                        SmartDialog.showLoading(msg: 'Log in...');
+
+                        await Future.delayed(
+                            const Duration(milliseconds: 2000));
+                        SmartDialog.dismiss();
+                        await Future.delayed(
+                            const Duration(milliseconds: 1500));
                         context.pushNamed(
                           OlineRoleplaySystemHomePageWidget.routeName,
                           extra: <String, dynamic>{

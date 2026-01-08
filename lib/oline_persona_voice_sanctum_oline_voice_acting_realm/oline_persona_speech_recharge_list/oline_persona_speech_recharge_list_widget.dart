@@ -1,4 +1,4 @@
-import 'package:oline/flutter_flow/iap_service.dart';
+import 'package:oline/flutter_flow/oline_cosplay_persona_framework_iap_service.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
