@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/index.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -75,18 +75,20 @@ class _OlineCharacterFlowStartLoginWidgetState
                         EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                     child: Text(
                       'Oline',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      style: OlineRoleplayDialogueTheme.of(context)
+                          .bodyMedium
+                          .override(
                             font: GoogleFonts.roboto(
                               fontWeight: FontWeight.w900,
-                              fontStyle: FlutterFlowTheme.of(context)
+                              fontStyle: OlineRoleplayDialogueTheme.of(context)
                                   .bodyMedium
                                   .fontStyle,
                             ),
-                            color: FlutterFlowTheme.of(context).info,
+                            color: OlineRoleplayDialogueTheme.of(context).info,
                             fontSize: 36.0,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w900,
-                            fontStyle: FlutterFlowTheme.of(context)
+                            fontStyle: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .fontStyle,
                           ),
@@ -102,7 +104,8 @@ class _OlineCharacterFlowStartLoginWidgetState
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         // 生成新用户ID
-                        final users = FFAppState().olineImmersiveVoiceUsers;
+                        final users = OlineImmersiveRoleplayEngine()
+                            .olineImmersiveVoiceUsers;
                         final newUserId = users.isEmpty
                             ? 0
                             : users
@@ -126,10 +129,12 @@ class _OlineCharacterFlowStartLoginWidgetState
                               '"OlineRoleplayLoungeUser_blocklist":"[]"}'),
                         );
 
-                        FFAppState().addToOlineImmersiveVoiceUsers(newUser);
+                        OlineImmersiveRoleplayEngine()
+                            .addToOlineImmersiveVoiceUsers(newUser);
 
-                        FFAppState().olinePersonaUniverseLoginToken = newUserId;
-                        FFAppState().update(() {});
+                        OlineImmersiveRoleplayEngine()
+                            .olinePersonaUniverseLoginToken = newUserId;
+                        OlineImmersiveRoleplayEngine().update(() {});
 
                         SmartDialog.showLoading(msg: 'Log in...');
 
@@ -164,22 +169,25 @@ class _OlineCharacterFlowStartLoginWidgetState
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             'I\'m New',
-                            style: FlutterFlowTheme.of(context)
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
                                     fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: OlineRoleplayDialogueTheme.of(context)
+                                      .info,
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                           ),
                         ),
@@ -216,22 +224,25 @@ class _OlineCharacterFlowStartLoginWidgetState
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             'Login by Email',
-                            style: FlutterFlowTheme.of(context)
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
                                     fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: OlineRoleplayDialogueTheme.of(context)
+                                      .info,
                                   fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                           ),
                         ),
@@ -291,46 +302,57 @@ class _OlineCharacterFlowStartLoginWidgetState
                             children: [
                               TextSpan(
                                 text: 'Agree with  ',
-                                style: FlutterFlowTheme.of(context)
+                                style: OlineRoleplayDialogueTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       font: GoogleFonts.roboto(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
+                                        fontWeight:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontWeight,
+                                        fontStyle:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context).info,
+                                      color:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .info,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
+                                      fontWeight:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontWeight,
+                                      fontStyle:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontStyle,
                                     ),
                               ),
                               TextSpan(
                                 text: 'User Agreement',
-                                style: FlutterFlowTheme.of(context)
+                                style: OlineRoleplayDialogueTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       font: GoogleFonts.roboto(
                                         fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
+                                        fontStyle:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontStyle,
                                       ),
                                       color: Color(0xFFF8469E),
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
+                                      fontStyle:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontStyle,
                                       decoration: TextDecoration.underline,
                                     ),
                                 mouseCursor: SystemMouseCursors.click,
@@ -342,7 +364,8 @@ class _OlineCharacterFlowStartLoginWidgetState
                                       queryParameters: {
                                         'olineCharacterLoreNetworkUrl':
                                             serializeParam(
-                                          FFAppConstants.OlineCosplaySphereUser,
+                                          OlineCosplayPersonaFramework
+                                              .OlineCosplaySphereUser,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -358,50 +381,64 @@ class _OlineCharacterFlowStartLoginWidgetState
                               ),
                               TextSpan(
                                 text: ' and ',
-                                style: FlutterFlowTheme.of(context)
+                                style: OlineRoleplayDialogueTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       font: GoogleFonts.roboto(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
+                                        fontWeight:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontWeight,
+                                        fontStyle:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context).info,
+                                      color:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .info,
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
+                                      fontWeight:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontWeight,
+                                      fontStyle:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontStyle,
                                     ),
                               ),
                               TextSpan(
                                 text: 'Privacy Policy.',
-                                style: FlutterFlowTheme.of(context)
+                                style: OlineRoleplayDialogueTheme.of(context)
                                     .bodyMedium
                                     .override(
                                       font: GoogleFonts.roboto(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
+                                        fontWeight:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontWeight,
+                                        fontStyle:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontStyle,
                                       ),
                                       color: Color(0xFFF8469E),
                                       fontSize: 12.0,
                                       letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
+                                      fontWeight:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontWeight,
+                                      fontStyle:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .bodyMedium
+                                              .fontStyle,
                                       decoration: TextDecoration.underline,
                                     ),
                                 mouseCursor: SystemMouseCursors.click,
@@ -413,7 +450,7 @@ class _OlineCharacterFlowStartLoginWidgetState
                                       queryParameters: {
                                         'olineCharacterLoreNetworkUrl':
                                             serializeParam(
-                                          FFAppConstants
+                                          OlineCosplayPersonaFramework
                                               .OlineRoleplayDomainPrivacy,
                                           ParamType.String,
                                         ),
@@ -429,24 +466,28 @@ class _OlineCharacterFlowStartLoginWidgetState
                                   },
                               )
                             ],
-                            style: FlutterFlowTheme.of(context)
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontWeight:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontWeight:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                           ),
                         ),

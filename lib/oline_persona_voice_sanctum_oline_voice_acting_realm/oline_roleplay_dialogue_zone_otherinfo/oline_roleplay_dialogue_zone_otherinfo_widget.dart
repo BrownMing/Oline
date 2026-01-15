@@ -1,7 +1,7 @@
 import '/backend/schema/structs/index.dart';
 import '/components/oline_persona_voice_chronicle_like_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/oline_persona_voice_sanctum_oline_voice_acting_realm/oline_voice_role_interaction_report_black/oline_voice_role_interaction_report_black_widget.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +49,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<OlineImmersiveRoleplayEngine>();
 
     return GestureDetector(
       onTap: () {
@@ -99,7 +99,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                             shape: BoxShape.circle,
                           ),
                           child: Image.asset(
-                            FFAppState()
+                            OlineImmersiveRoleplayEngine()
                                 .olineImmersiveVoiceUsers
                                 .elementAtOrNull(
                                     widget.olineCosplayPerformanceUserid!)!
@@ -122,10 +122,11 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                             children: [
                               Builder(
                                 builder: (context) {
-                                  if (!FFAppState()
+                                  if (!OlineImmersiveRoleplayEngine()
                                       .olineImmersiveVoiceUsers
-                                      .elementAtOrNull(FFAppState()
-                                          .olinePersonaUniverseLoginToken)!
+                                      .elementAtOrNull(
+                                          OlineImmersiveRoleplayEngine()
+                                              .olinePersonaUniverseLoginToken)!
                                       .olineRoleplayLoungeUserFollowings
                                       .contains(widget
                                           .olineCosplayPerformanceUserid)) {
@@ -136,19 +137,21 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         HapticFeedback.heavyImpact();
-                                        FFAppState()
+                                        OlineImmersiveRoleplayEngine()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
                                           widget.olineCosplayPerformanceUserid!,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserFans(
-                                              (e) => e.add(FFAppState()
-                                                  .olinePersonaUniverseLoginToken),
+                                              (e) => e.add(
+                                                  OlineImmersiveRoleplayEngine()
+                                                      .olinePersonaUniverseLoginToken),
                                             ),
                                         );
-                                        FFAppState().update(() {});
-                                        FFAppState()
+                                        OlineImmersiveRoleplayEngine()
+                                            .update(() {});
+                                        OlineImmersiveRoleplayEngine()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
-                                          FFAppState()
+                                          OlineImmersiveRoleplayEngine()
                                               .olinePersonaUniverseLoginToken,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserFollowings(
@@ -156,7 +159,8 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                   .olineCosplayPerformanceUserid!),
                                             ),
                                         );
-                                        FFAppState().update(() {});
+                                        OlineImmersiveRoleplayEngine()
+                                            .update(() {});
                                       },
                                       child: AnimatedContainer(
                                         duration: Duration(milliseconds: 300),
@@ -181,19 +185,21 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         HapticFeedback.heavyImpact();
-                                        FFAppState()
+                                        OlineImmersiveRoleplayEngine()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
                                           widget.olineCosplayPerformanceUserid!,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserFans(
-                                              (e) => e.remove(FFAppState()
-                                                  .olinePersonaUniverseLoginToken),
+                                              (e) => e.remove(
+                                                  OlineImmersiveRoleplayEngine()
+                                                      .olinePersonaUniverseLoginToken),
                                             ),
                                         );
-                                        FFAppState().update(() {});
-                                        FFAppState()
+                                        OlineImmersiveRoleplayEngine()
+                                            .update(() {});
+                                        OlineImmersiveRoleplayEngine()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
-                                          FFAppState()
+                                          OlineImmersiveRoleplayEngine()
                                               .olinePersonaUniverseLoginToken,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserFollowings(
@@ -201,7 +207,8 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                   .olineCosplayPerformanceUserid),
                                             ),
                                         );
-                                        FFAppState().update(() {});
+                                        OlineImmersiveRoleplayEngine()
+                                            .update(() {});
                                       },
                                       child: AnimatedContainer(
                                         duration: Duration(milliseconds: 300),
@@ -223,12 +230,13 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                               ),
                               GestureDetector(
                                 onTap: () async {
-                                  final currentUserId = FFAppState()
-                                      .olinePersonaUniverseLoginToken;
+                                  final currentUserId =
+                                      OlineImmersiveRoleplayEngine()
+                                          .olinePersonaUniverseLoginToken;
                                   final otherUserId =
                                       widget.olineCosplayPerformanceUserid!;
 
-                                  final existingChat = FFAppState()
+                                  final existingChat = OlineImmersiveRoleplayEngine()
                                       .olineCosplayAudioChats
                                       .where((chat) =>
                                           (chat.olineVoicePersonaRoleplayChatSendUser ==
@@ -247,10 +255,11 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                     chatId = existingChat
                                         .first.olineVoicePersonaRoleplayChatId;
                                   } else {
-                                    chatId = FFAppState()
+                                    chatId = OlineImmersiveRoleplayEngine()
                                         .olineCosplayAudioChats
                                         .length;
-                                    FFAppState().addToOlineCosplayAudioChats(
+                                    OlineImmersiveRoleplayEngine()
+                                        .addToOlineCosplayAudioChats(
                                       OlineVoicePersonaRoleplayChatStruct(
                                         olineVoicePersonaRoleplayChatId: chatId,
                                         olineVoicePersonaRoleplayChatSendUser:
@@ -264,7 +273,8 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                         olineVoicePersonaRoleplayChatUnread: 0,
                                       ),
                                     );
-                                    FFAppState().update(() {});
+                                    OlineImmersiveRoleplayEngine()
+                                        .update(() {});
                                   }
 
                                   context.pushNamed(
@@ -311,23 +321,25 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(widget.olineCosplayPerformanceUserid!)?.olineRoleplayLoungeUserName}',
-                            style: FlutterFlowTheme.of(context)
+                            '${OlineImmersiveRoleplayEngine().olineImmersiveVoiceUsers.elementAtOrNull(widget.olineCosplayPerformanceUserid!)?.olineRoleplayLoungeUserName}',
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
                                     fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
                                   color: Color(0xFF270D2B),
                                   fontSize: 28.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                           ),
                         ),
@@ -335,26 +347,30 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(
                               12.0, 8.0, 0.0, 0.0),
                           child: Text(
-                            '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(widget.olineCosplayPerformanceUserid!)?.olineRoleplayLoungeUserDescribe}',
-                            style: FlutterFlowTheme.of(context)
+                            '${OlineImmersiveRoleplayEngine().olineImmersiveVoiceUsers.elementAtOrNull(widget.olineCosplayPerformanceUserid!)?.olineRoleplayLoungeUserDescribe}',
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontWeight:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
                                   color: Color(0xFFACA4B0),
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontWeight:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                           ),
                         ),
@@ -363,22 +379,24 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                               12.0, 24.0, 0.0, 0.0),
                           child: Text(
                             'Posts',
-                            style: FlutterFlowTheme.of(context)
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
                                     fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
                                   color: Color(0xFF270D2B),
                                   fontSize: 20.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                           ),
                         ),
@@ -388,12 +406,14 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                 12.0, 24.0, 12.0, 0.0),
                             child: Builder(
                               builder: (context) {
-                                final olinePersonaActingSphere = FFAppState()
-                                    .olinePersonaChannelPosts
-                                    .where((e) =>
-                                        widget.olineCosplayPerformanceUserid ==
-                                        e.olineFictionVoiceHallPostCreateId)
-                                    .toList();
+                                final olinePersonaActingSphere =
+                                    OlineImmersiveRoleplayEngine()
+                                        .olinePersonaChannelPosts
+                                        .where((e) =>
+                                            widget
+                                                .olineCosplayPerformanceUserid ==
+                                            e.olineFictionVoiceHallPostCreateId)
+                                        .toList();
 
                                 return ListView.separated(
                                   padding: EdgeInsets.zero,
@@ -452,7 +472,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.asset(
-                                              FFAppState()
+                                              OlineImmersiveRoleplayEngine()
                                                   .olineImmersiveVoiceUsers
                                                   .elementAtOrNull(widget
                                                       .olineCosplayPerformanceUserid!)!
@@ -471,71 +491,74 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(widget.olineCosplayPerformanceUserid!)?.olineRoleplayLoungeUserName}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .roboto(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                    '${OlineImmersiveRoleplayEngine().olineImmersiveVoiceUsers.elementAtOrNull(widget.olineCosplayPerformanceUserid!)?.olineRoleplayLoungeUserName}',
+                                                    style:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .roboto(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontStyle: OlineRoleplayDialogueTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
-                                                          ),
-                                                          color:
-                                                              Color(0xFF270D2B),
-                                                          fontSize: 16.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                              color: Color(
+                                                                  0xFF270D2B),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontStyle:
+                                                                  OlineRoleplayDialogueTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                   ),
                                                   Text(
                                                     dateTimeFormat(
                                                         "relative",
                                                         olinePersonaActingSphereItem
                                                             .olineFictionVoiceHallPostCreateTime!),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .roboto(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
+                                                    style:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .roboto(
+                                                                fontWeight: OlineRoleplayDialogueTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
+                                                                fontStyle: OlineRoleplayDialogueTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
-                                                          ),
-                                                          color:
-                                                              Color(0xFFACA4B0),
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                              ),
+                                                              color: Color(
+                                                                  0xFFACA4B0),
+                                                              fontSize: 12.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  OlineRoleplayDialogueTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  OlineRoleplayDialogueTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -546,18 +569,18 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                       olinePersonaActingSphereItem
                                                           .olineFictionVoiceHallPostDescribe,
                                                       style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 font:
                                                                     GoogleFonts
                                                                         .roboto(
-                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                  fontWeight: OlineRoleplayDialogueTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                  fontStyle: OlineRoleplayDialogueTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .fontStyle,
@@ -567,11 +590,11 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                 fontSize: 16.0,
                                                                 letterSpacing:
                                                                     0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
+                                                                fontWeight: OlineRoleplayDialogueTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
+                                                                fontStyle: OlineRoleplayDialogueTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
@@ -652,7 +675,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                           0.0),
                                                               child: Text(
                                                                 '${olinePersonaActingSphereItem.olineFictionVoiceHallPostLikeUsers.length.toString()}',
-                                                                style: FlutterFlowTheme.of(
+                                                                style: OlineRoleplayDialogueTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .override(
@@ -660,7 +683,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                           .roboto(
                                                                         fontWeight:
                                                                             FontWeight.w500,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                        fontStyle: OlineRoleplayDialogueTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontStyle,
                                                                       ),
@@ -673,7 +696,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w500,
-                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                      fontStyle: OlineRoleplayDialogueTheme.of(
                                                                               context)
                                                                           .bodyMedium
                                                                           .fontStyle,
@@ -721,7 +744,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                             0.0),
                                                                 child: Text(
                                                                   '${olinePersonaActingSphereItem.olineFictionVoiceHallPostComments.length.toString()}',
-                                                                  style: FlutterFlowTheme.of(
+                                                                  style: OlineRoleplayDialogueTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
@@ -729,7 +752,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                             .roboto(
                                                                           fontWeight:
                                                                               FontWeight.w500,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                          fontStyle: OlineRoleplayDialogueTheme.of(context)
                                                                               .bodyMedium
                                                                               .fontStyle,
                                                                         ),
@@ -741,7 +764,7 @@ class _OlineRoleplayDialogueZoneOtherinfoWidgetState
                                                                             0.0,
                                                                         fontWeight:
                                                                             FontWeight.w500,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                        fontStyle: OlineRoleplayDialogueTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontStyle,
                                                                       ),

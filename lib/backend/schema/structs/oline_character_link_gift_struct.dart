@@ -3,7 +3,7 @@
 import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 
 class OlineCharacterLinkGiftStruct extends BaseStruct {
   OlineCharacterLinkGiftStruct({

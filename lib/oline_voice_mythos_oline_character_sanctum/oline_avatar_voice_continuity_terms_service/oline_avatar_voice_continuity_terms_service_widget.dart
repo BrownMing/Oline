@@ -1,7 +1,7 @@
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'package:flutter/material.dart';
 import 'oline_avatar_voice_continuity_terms_service_model.dart';
 export 'oline_avatar_voice_continuity_terms_service_model.dart';

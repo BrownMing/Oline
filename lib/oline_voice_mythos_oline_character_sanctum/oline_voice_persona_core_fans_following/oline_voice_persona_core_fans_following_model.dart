@@ -1,10 +1,11 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_voice_persona_core_fans_following_widget.dart'
     show OlineVoicePersonaCoreFansFollowingWidget;
 import 'package:flutter/material.dart';
 
 class OlineVoicePersonaCoreFansFollowingModel
-    extends FlutterFlowModel<OlineVoicePersonaCoreFansFollowingWidget> {
+    extends OlineRoleplayDialogueModel<
+        OlineVoicePersonaCoreFansFollowingWidget> {
   @override
   void initState(BuildContext context) {}
 

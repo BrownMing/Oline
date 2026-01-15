@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '../../flutter_flow/uploaded_file.dart';
+import '../olineCharacte_fableVerse_upload.dart';
 
 String dateTimeRangeToString(DateTimeRange dateTimeRange) {
   final startStr = dateTimeRange.start.millisecondsSinceEpoch.toString();
@@ -12,7 +12,7 @@ String dateTimeRangeToString(DateTimeRange dateTimeRange) {
   return '$startStr|$endStr';
 }
 
-String uploadedFileToString(FFUploadedFile uploadedFile) =>
+String uploadedFileToString(OlineVoiceRoleplayConstellation uploadedFile) =>
     uploadedFile.serialize();
 
 String? serializeParam(
@@ -50,8 +50,8 @@ String? serializeParam(
       case ParamType.Color:
         data = (param as Color).toCssString();
 
-      case ParamType.FFUploadedFile:
-        data = uploadedFileToString(param as FFUploadedFile);
+      case ParamType.OlineVoiceRoleplayConstellation:
+        data = uploadedFileToString(param as OlineVoiceRoleplayConstellation);
       case ParamType.JSON:
         data = json.encode(param);
 
@@ -79,8 +79,9 @@ DateTimeRange? dateTimeRangeFromString(String dateTimeRangeStr) {
   );
 }
 
-FFUploadedFile uploadedFileFromString(String uploadedFileStr) =>
-    FFUploadedFile.deserialize(uploadedFileStr);
+OlineVoiceRoleplayConstellation uploadedFileFromString(
+        String uploadedFileStr) =>
+    OlineVoiceRoleplayConstellation.deserialize(uploadedFileStr);
 
 enum ParamType {
   int,
@@ -90,7 +91,7 @@ enum ParamType {
   DateTime,
   DateTimeRange,
   Color,
-  FFUploadedFile,
+  OlineVoiceRoleplayConstellation,
   JSON,
 
   DataStruct,
@@ -144,7 +145,7 @@ dynamic deserializeParam<T>(
       case ParamType.Color:
         return fromCssColor(param);
 
-      case ParamType.FFUploadedFile:
+      case ParamType.OlineVoiceRoleplayConstellation:
         return uploadedFileFromString(param);
       case ParamType.JSON:
         return json.decode(param);

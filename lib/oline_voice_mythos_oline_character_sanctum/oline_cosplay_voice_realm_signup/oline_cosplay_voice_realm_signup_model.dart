@@ -1,10 +1,10 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_cosplay_voice_realm_signup_widget.dart'
     show OlineCosplayVoiceRealmSignupWidget;
 import 'package:flutter/material.dart';
 
 class OlineCosplayVoiceRealmSignupModel
-    extends FlutterFlowModel<OlineCosplayVoiceRealmSignupWidget> {
+    extends OlineRoleplayDialogueModel<OlineCosplayVoiceRealmSignupWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;

@@ -1,7 +1,7 @@
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/oline_persona_voice_sanctum_oline_voice_acting_realm/oline_roleplay_voice_mythos_report_details/oline_roleplay_voice_mythos_report_details_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,7 +48,7 @@ class _OlineVoiceRoleInteractionReportBlackWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<OlineImmersiveRoleplayEngine>();
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -105,10 +105,12 @@ class _OlineVoiceRoleInteractionReportBlackWidgetState
                 children: [
                   Text(
                     'Report or Block User?',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    style: OlineRoleplayDialogueTheme.of(context)
+                        .bodyMedium
+                        .override(
                           font: GoogleFonts.roboto(
                             fontWeight: FontWeight.bold,
-                            fontStyle: FlutterFlowTheme.of(context)
+                            fontStyle: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .fontStyle,
                           ),
@@ -116,25 +118,28 @@ class _OlineVoiceRoleInteractionReportBlackWidgetState
                           fontSize: 20.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                          fontStyle: OlineRoleplayDialogueTheme.of(context)
+                              .bodyMedium
+                              .fontStyle,
                         ),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                     child: Text(
                       'If you find this user\'s behavior inappropriate or offensive, you can choose to report them to us for review or block them to prevent further interaction.',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      style: OlineRoleplayDialogueTheme.of(context)
+                          .bodyMedium
+                          .override(
                             font: GoogleFonts.roboto(
                               fontWeight: FontWeight.w500,
-                              fontStyle: FlutterFlowTheme.of(context)
+                              fontStyle: OlineRoleplayDialogueTheme.of(context)
                                   .bodyMedium
                                   .fontStyle,
                             ),
                             color: Color(0xFFACA4B0),
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,
-                            fontStyle: FlutterFlowTheme.of(context)
+                            fontStyle: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .fontStyle,
                           ),
@@ -188,15 +193,17 @@ class _OlineVoiceRoleInteractionReportBlackWidgetState
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            FFAppState().updateOlineImmersiveVoiceUsersAtIndex(
-                              FFAppState().olinePersonaUniverseLoginToken,
+                            OlineImmersiveRoleplayEngine()
+                                .updateOlineImmersiveVoiceUsersAtIndex(
+                              OlineImmersiveRoleplayEngine()
+                                  .olinePersonaUniverseLoginToken,
                               (e) => e
                                 ..updateOlineRoleplayLoungeUserBlocklist(
                                   (e) => e.add(widget
                                       .olineAvatarNarrativeConstellation!),
                                 ),
                             );
-                            FFAppState().update(() {});
+                            OlineImmersiveRoleplayEngine().update(() {});
                             Navigator.pop(context, true);
                             SmartDialog.showNotify(
                                 msg: 'Blocked Succeed!',

@@ -1,11 +1,11 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_cosplay_persona_stage_edit_profile_widget.dart'
     show OlineCosplayPersonaStageEditProfileWidget;
 import 'package:flutter/material.dart';
 
 class OlineCosplayPersonaStageEditProfileModel
-    extends FlutterFlowModel<OlineCosplayPersonaStageEditProfileWidget> {
-
+    extends OlineRoleplayDialogueModel<
+        OlineCosplayPersonaStageEditProfileWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;

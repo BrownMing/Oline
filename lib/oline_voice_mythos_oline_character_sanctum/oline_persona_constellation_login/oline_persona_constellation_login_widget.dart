@@ -1,8 +1,8 @@
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:oline/backend/schema/structs/oline_roleplay_lounge_user_struct.dart';
 
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,7 +54,7 @@ class _OlinePersonaConstellationLoginWidgetState
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).info,
+        backgroundColor: OlineRoleplayDialogueTheme.of(context).info,
         body: Stack(
           children: [
             Image.asset(
@@ -96,18 +96,21 @@ class _OlinePersonaConstellationLoginWidgetState
                       ),
                       Text(
                         'Sign in',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: OlineRoleplayDialogueTheme.of(context)
+                            .bodyMedium
+                            .override(
                               font: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
+                                fontStyle:
+                                    OlineRoleplayDialogueTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                               ),
                               color: Color(0xFF270D2B),
                               fontSize: 18.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
-                              fontStyle: FlutterFlowTheme.of(context)
+                              fontStyle: OlineRoleplayDialogueTheme.of(context)
                                   .bodyMedium
                                   .fontStyle,
                             ),
@@ -139,13 +142,14 @@ class _OlinePersonaConstellationLoginWidgetState
                               children: [
                                 Text(
                                   'Email:',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: OlineRoleplayDialogueTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         font: GoogleFonts.roboto(
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
@@ -153,9 +157,11 @@ class _OlinePersonaConstellationLoginWidgetState
                                         fontSize: 18.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
+                                        fontStyle:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontStyle,
                                       ),
                                 ),
                                 Container(
@@ -178,61 +184,67 @@ class _OlinePersonaConstellationLoginWidgetState
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           isDense: true,
-                                          labelStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                font: GoogleFonts.roboto(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
-                                                ),
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontStyle,
-                                              ),
+                                          labelStyle:
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    font: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
                                           hintText: 'Enter email address',
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                font: GoogleFonts.roboto(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
-                                                ),
-                                                color: Color(0xFFACA4B0),
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontStyle,
-                                              ),
+                                          hintStyle:
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    font: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Color(0xFFACA4B0),
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -279,16 +291,19 @@ class _OlinePersonaConstellationLoginWidgetState
                                             ),
                                           ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: OlineRoleplayDialogueTheme.of(
+                                                context)
                                             .bodyMedium
                                             .override(
                                               font: GoogleFonts.roboto(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
@@ -296,11 +311,13 @@ class _OlinePersonaConstellationLoginWidgetState
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
@@ -330,13 +347,15 @@ class _OlinePersonaConstellationLoginWidgetState
                                   children: [
                                     Text(
                                       'Password:',
-                                      style: FlutterFlowTheme.of(context)
+                                      style: OlineRoleplayDialogueTheme.of(
+                                              context)
                                           .bodyMedium
                                           .override(
                                             font: GoogleFonts.roboto(
                                               fontWeight: FontWeight.bold,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
@@ -345,7 +364,8 @@ class _OlinePersonaConstellationLoginWidgetState
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
+                                                OlineRoleplayDialogueTheme.of(
+                                                        context)
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
@@ -370,16 +390,19 @@ class _OlinePersonaConstellationLoginWidgetState
                                       },
                                       child: Text(
                                         'FORGOT?',
-                                        style: FlutterFlowTheme.of(context)
+                                        style: OlineRoleplayDialogueTheme.of(
+                                                context)
                                             .bodyMedium
                                             .override(
                                               font: GoogleFonts.roboto(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
@@ -387,11 +410,13 @@ class _OlinePersonaConstellationLoginWidgetState
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontStyle,
                                               decoration:
@@ -421,61 +446,67 @@ class _OlinePersonaConstellationLoginWidgetState
                                         obscureText: true,
                                         decoration: InputDecoration(
                                           isDense: true,
-                                          labelStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                font: GoogleFonts.roboto(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
-                                                ),
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontStyle,
-                                              ),
+                                          labelStyle:
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    font: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
                                           hintText: 'Enter password',
-                                          hintStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                font: GoogleFonts.roboto(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelMedium
-                                                          .fontStyle,
-                                                ),
-                                                color: Color(0xFFACA4B0),
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .fontStyle,
-                                              ),
+                                          hintStyle:
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
+                                                  .labelMedium
+                                                  .override(
+                                                    font: GoogleFonts.roboto(
+                                                      fontWeight:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          OlineRoleplayDialogueTheme
+                                                                  .of(context)
+                                                              .labelMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Color(0xFFACA4B0),
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        OlineRoleplayDialogueTheme
+                                                                .of(context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
                                           enabledBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
@@ -522,16 +553,19 @@ class _OlinePersonaConstellationLoginWidgetState
                                             ),
                                           ),
                                         ),
-                                        style: FlutterFlowTheme.of(context)
+                                        style: OlineRoleplayDialogueTheme.of(
+                                                context)
                                             .bodyMedium
                                             .override(
                                               font: GoogleFonts.roboto(
                                                 fontWeight:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontWeight,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
@@ -539,11 +573,13 @@ class _OlinePersonaConstellationLoginWidgetState
                                               fontSize: 16.0,
                                               letterSpacing: 0.0,
                                               fontWeight:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontWeight,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
@@ -585,16 +621,19 @@ class _OlinePersonaConstellationLoginWidgetState
                                 children: [
                                   Text(
                                     'Don\'t have an account? ',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: OlineRoleplayDialogueTheme.of(
+                                            context)
                                         .bodyMedium
                                         .override(
                                           font: GoogleFonts.roboto(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
+                                                OlineRoleplayDialogueTheme.of(
+                                                        context)
                                                     .bodyMedium
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
+                                                OlineRoleplayDialogueTheme.of(
+                                                        context)
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
@@ -602,27 +641,32 @@ class _OlinePersonaConstellationLoginWidgetState
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
                                   ),
                                   Text(
                                     'Sign up',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: OlineRoleplayDialogueTheme.of(
+                                            context)
                                         .bodyMedium
                                         .override(
                                           font: GoogleFonts.roboto(
                                             fontWeight:
-                                                FlutterFlowTheme.of(context)
+                                                OlineRoleplayDialogueTheme.of(
+                                                        context)
                                                     .bodyMedium
                                                     .fontWeight,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
+                                                OlineRoleplayDialogueTheme.of(
+                                                        context)
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
@@ -630,11 +674,13 @@ class _OlinePersonaConstellationLoginWidgetState
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontWeight,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontStyle,
                                           decoration: TextDecoration.underline,
@@ -669,8 +715,8 @@ class _OlinePersonaConstellationLoginWidgetState
                                 await Future.delayed(
                                     const Duration(milliseconds: 2000));
 
-                                final users =
-                                    FFAppState().olineImmersiveVoiceUsers;
+                                final users = OlineImmersiveRoleplayEngine()
+                                    .olineImmersiveVoiceUsers;
                                 OlineRoleplayLoungeUserStruct? matchedUser;
 
                                 for (var user in users) {
@@ -684,7 +730,8 @@ class _OlinePersonaConstellationLoginWidgetState
                                 }
                                 SmartDialog.dismiss();
                                 if (matchedUser != null) {
-                                  FFAppState().olinePersonaUniverseLoginToken =
+                                  OlineImmersiveRoleplayEngine()
+                                          .olinePersonaUniverseLoginToken =
                                       matchedUser.olineRoleplayLoungeUserId;
                                   SmartDialog.showNotify(
                                       msg: 'Login successful!',
@@ -726,23 +773,27 @@ class _OlinePersonaConstellationLoginWidgetState
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     'Login',
-                                    style: FlutterFlowTheme.of(context)
+                                    style: OlineRoleplayDialogueTheme.of(
+                                            context)
                                         .bodyMedium
                                         .override(
                                           font: GoogleFonts.roboto(
                                             fontWeight: FontWeight.bold,
                                             fontStyle:
-                                                FlutterFlowTheme.of(context)
+                                                OlineRoleplayDialogueTheme.of(
+                                                        context)
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color:
-                                              FlutterFlowTheme.of(context).info,
+                                          color: OlineRoleplayDialogueTheme.of(
+                                                  context)
+                                              .info,
                                           fontSize: 16.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),

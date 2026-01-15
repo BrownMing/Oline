@@ -1,5 +1,5 @@
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -39,7 +39,7 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<OlineImmersiveRoleplayEngine>();
 
     return GestureDetector(
       onTap: () {
@@ -89,18 +89,21 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                       ),
                       Text(
                         'Blacklist',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        style: OlineRoleplayDialogueTheme.of(context)
+                            .bodyMedium
+                            .override(
                               font: GoogleFonts.roboto(
                                 fontWeight: FontWeight.bold,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
+                                fontStyle:
+                                    OlineRoleplayDialogueTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                               ),
                               color: Colors.black,
                               fontSize: 20.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
-                              fontStyle: FlutterFlowTheme.of(context)
+                              fontStyle: OlineRoleplayDialogueTheme.of(context)
                                   .bodyMedium
                                   .fontStyle,
                             ),
@@ -119,13 +122,15 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                         EdgeInsetsDirectional.fromSTEB(12.0, 25.0, 12.0, 0.0),
                     child: Builder(
                       builder: (context) {
-                        final olineAvatarVoiceMythos = FFAppState()
-                                .olineImmersiveVoiceUsers
-                                .elementAtOrNull(
-                                    FFAppState().olinePersonaUniverseLoginToken)
-                                ?.olineRoleplayLoungeUserBlocklist
-                                .toList() ??
-                            [];
+                        final olineAvatarVoiceMythos =
+                            OlineImmersiveRoleplayEngine()
+                                    .olineImmersiveVoiceUsers
+                                    .elementAtOrNull(
+                                        OlineImmersiveRoleplayEngine()
+                                            .olinePersonaUniverseLoginToken)
+                                    ?.olineRoleplayLoungeUserBlocklist
+                                    .toList() ??
+                                [];
 
                         return ListView.separated(
                           padding: EdgeInsets.zero,
@@ -148,7 +153,7 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(
-                                    FFAppState()
+                                    OlineImmersiveRoleplayEngine()
                                         .olineImmersiveVoiceUsers
                                         .elementAtOrNull(
                                             olineAvatarVoiceMythosItem)!
@@ -160,26 +165,29 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       12.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(olineAvatarVoiceMythosItem)?.olineRoleplayLoungeUserName}',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                          color: Color(0xFF270D2B),
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
+                                    '${OlineImmersiveRoleplayEngine().olineImmersiveVoiceUsers.elementAtOrNull(olineAvatarVoiceMythosItem)?.olineRoleplayLoungeUserName}',
+                                    style:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.roboto(
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color: Color(0xFF270D2B),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
                                   ),
                                 ),
                                 Flexible(
@@ -191,9 +199,9 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        FFAppState()
+                                        OlineImmersiveRoleplayEngine()
                                             .updateOlineImmersiveVoiceUsersAtIndex(
-                                          FFAppState()
+                                          OlineImmersiveRoleplayEngine()
                                               .olinePersonaUniverseLoginToken,
                                           (e) => e
                                             ..updateOlineRoleplayLoungeUserBlocklist(
@@ -201,7 +209,8 @@ class _OlineCharacterEchoVerseBlockedListWidgetState
                                                   olineAvatarVoiceMythosItem),
                                             ),
                                         );
-                                        FFAppState().update(() {});
+                                        OlineImmersiveRoleplayEngine()
+                                            .update(() {});
                                       },
                                       child: Container(
                                         width: 76.0,

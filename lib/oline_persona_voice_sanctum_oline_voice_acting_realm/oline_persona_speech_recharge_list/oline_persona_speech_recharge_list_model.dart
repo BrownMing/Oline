@@ -1,10 +1,10 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_persona_speech_recharge_list_widget.dart'
     show OlinePersonaSpeechRechargeListWidget;
 import 'package:flutter/material.dart';
 
 class OlinePersonaSpeechRechargeListModel
-    extends FlutterFlowModel<OlinePersonaSpeechRechargeListWidget> {
+    extends OlineRoleplayDialogueModel<OlinePersonaSpeechRechargeListWidget> {
   @override
   void initState(BuildContext context) {}
 

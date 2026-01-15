@@ -1,6 +1,6 @@
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,7 +45,7 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<OlineImmersiveRoleplayEngine>();
 
     return GestureDetector(
       onTap: () {
@@ -114,46 +114,54 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              labelStyle: FlutterFlowTheme.of(context)
+                              labelStyle: OlineRoleplayDialogueTheme.of(context)
                                   .labelMedium
                                   .override(
                                     font: GoogleFonts.roboto(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
+                                      fontWeight:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .labelMedium
+                                              .fontWeight,
+                                      fontStyle:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .labelMedium
+                                              .fontStyle,
                                     ),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
+                                    fontWeight:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .labelMedium
+                                            .fontWeight,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
                                   ),
                               hintText:
                                   'Detail：Any ideas for a swimming costume party?',
-                              hintStyle: FlutterFlowTheme.of(context)
+                              hintStyle: OlineRoleplayDialogueTheme.of(context)
                                   .labelMedium
                                   .override(
                                     font: GoogleFonts.roboto(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
+                                      fontWeight:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .labelMedium
+                                              .fontWeight,
+                                      fontStyle:
+                                          OlineRoleplayDialogueTheme.of(context)
+                                              .labelMedium
+                                              .fontStyle,
                                     ),
                                     color: Color(0xFFACA4B0),
                                     letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
+                                    fontWeight:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .labelMedium
+                                            .fontWeight,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .labelMedium
+                                            .fontStyle,
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -196,25 +204,29 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                                 ),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context)
+                            style: OlineRoleplayDialogueTheme.of(context)
                                 .bodyMedium
                                 .override(
                                   font: GoogleFonts.roboto(
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
+                                    fontWeight:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                    fontStyle:
+                                        OlineRoleplayDialogueTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                   ),
                                   color: Colors.black,
                                   letterSpacing: 0.0,
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontStyle,
+                                  fontWeight:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
                                 ),
                             maxLines: 10,
                             cursorColor: Colors.black,
@@ -355,15 +367,18 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                               }
 
                               // 发布动态
-                              FFAppState().addToOlinePersonaChannelPosts(
-                                  OlineFictionVoiceHallPostStruct(
-                                olineFictionVoiceHallPostId: FFAppState()
-                                    .olinePersonaChannelPosts
-                                    .length,
+                              OlineImmersiveRoleplayEngine()
+                                  .addToOlinePersonaChannelPosts(
+                                      OlineFictionVoiceHallPostStruct(
+                                olineFictionVoiceHallPostId:
+                                    OlineImmersiveRoleplayEngine()
+                                        .olinePersonaChannelPosts
+                                        .length,
                                 olineFictionVoiceHallPostShow:
                                     _model.olineInCharacterVoiceContinuity,
                                 olineFictionVoiceHallPostCreateId:
-                                    FFAppState().olinePersonaUniverseLoginToken,
+                                    OlineImmersiveRoleplayEngine()
+                                        .olinePersonaUniverseLoginToken,
                                 olineFictionVoiceHallPostDescribe:
                                     _model.textController.text,
                                 olineFictionVoiceHallPostLikeUsers: [],
@@ -371,7 +386,7 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                                     getCurrentTimestamp,
                                 olineFictionVoiceHallPostComments: [],
                               ));
-                              FFAppState().update(() {});
+                              OlineImmersiveRoleplayEngine().update(() {});
 
                               SmartDialog.showToast('Posted successfully!');
                               context.safePop();
@@ -395,24 +410,28 @@ class _OlineCosplayVoiceSessionPostImageWidgetState
                                 alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'Post',
-                                  style: FlutterFlowTheme.of(context)
+                                  style: OlineRoleplayDialogueTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         font: GoogleFonts.roboto(
                                           fontWeight: FontWeight.w500,
                                           fontStyle:
-                                              FlutterFlowTheme.of(context)
+                                              OlineRoleplayDialogueTheme.of(
+                                                      context)
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
+                                        color: OlineRoleplayDialogueTheme.of(
+                                                context)
+                                            .info,
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
+                                        fontStyle:
+                                            OlineRoleplayDialogueTheme.of(
+                                                    context)
+                                                .bodyMedium
+                                                .fontStyle,
                                       ),
                                 ),
                               ),

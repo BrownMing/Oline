@@ -1,11 +1,11 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'package:image_picker/image_picker.dart';
 import 'oline_cosplay_voice_session_post_image_widget.dart'
     show OlineCosplayVoiceSessionPostImageWidget;
 import 'package:flutter/material.dart';
 
-class OlineCosplayVoiceSessionPostImageModel
-    extends FlutterFlowModel<OlineCosplayVoiceSessionPostImageWidget> {
+class OlineCosplayVoiceSessionPostImageModel extends OlineRoleplayDialogueModel<
+    OlineCosplayVoiceSessionPostImageWidget> {
   List<String> olineInCharacterVoiceContinuity = [];
   void addToOlineInCharacterVoiceContinuity(String item) =>
       olineInCharacterVoiceContinuity.add(item);

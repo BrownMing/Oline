@@ -1,10 +1,10 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_voice_roleplay_continuum_empty_widget.dart'
     show OlineVoiceRoleplayContinuumEmptyWidget;
 import 'package:flutter/material.dart';
 
 class OlineVoiceRoleplayContinuumEmptyModel
-    extends FlutterFlowModel<OlineVoiceRoleplayContinuumEmptyWidget> {
+    extends OlineRoleplayDialogueModel<OlineVoiceRoleplayContinuumEmptyWidget> {
   @override
   void initState(BuildContext context) {}
 

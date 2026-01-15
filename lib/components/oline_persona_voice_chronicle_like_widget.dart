@@ -1,4 +1,4 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -43,15 +43,16 @@ class _OlinePersonaVoiceChronicleLikeWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<OlineImmersiveRoleplayEngine>();
 
     return Builder(
       builder: (context) {
-        if (!FFAppState()
+        if (!OlineImmersiveRoleplayEngine()
             .olinePersonaChannelPosts
             .elementAtOrNull(widget.parameter1!)!
             .olineFictionVoiceHallPostLikeUsers
-            .contains(FFAppState().olinePersonaUniverseLoginToken)) {
+            .contains(OlineImmersiveRoleplayEngine()
+                .olinePersonaUniverseLoginToken)) {
           return InkWell(
             splashColor: Colors.transparent,
             focusColor: Colors.transparent,
@@ -59,14 +60,16 @@ class _OlinePersonaVoiceChronicleLikeWidgetState
             highlightColor: Colors.transparent,
             onTap: () async {
               HapticFeedback.heavyImpact();
-              FFAppState().updateOlinePersonaChannelPostsAtIndex(
+              OlineImmersiveRoleplayEngine()
+                  .updateOlinePersonaChannelPostsAtIndex(
                 widget.parameter1!,
                 (e) => e
                   ..updateOlineFictionVoiceHallPostLikeUsers(
-                    (e) => e.add(FFAppState().olinePersonaUniverseLoginToken),
+                    (e) => e.add(OlineImmersiveRoleplayEngine()
+                        .olinePersonaUniverseLoginToken),
                   ),
               );
-              FFAppState().update(() {});
+              OlineImmersiveRoleplayEngine().update(() {});
             },
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
@@ -91,15 +94,16 @@ class _OlinePersonaVoiceChronicleLikeWidgetState
             highlightColor: Colors.transparent,
             onTap: () async {
               HapticFeedback.heavyImpact();
-              FFAppState().updateOlinePersonaChannelPostsAtIndex(
+              OlineImmersiveRoleplayEngine()
+                  .updateOlinePersonaChannelPostsAtIndex(
                 widget.parameter1!,
                 (e) => e
                   ..updateOlineFictionVoiceHallPostLikeUsers(
-                    (e) =>
-                        e.remove(FFAppState().olinePersonaUniverseLoginToken),
+                    (e) => e.remove(OlineImmersiveRoleplayEngine()
+                        .olinePersonaUniverseLoginToken),
                   ),
               );
-              FFAppState().update(() {});
+              OlineImmersiveRoleplayEngine().update(() {});
             },
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),

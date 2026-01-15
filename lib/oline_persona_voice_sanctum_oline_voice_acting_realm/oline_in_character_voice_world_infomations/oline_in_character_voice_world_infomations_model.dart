@@ -1,22 +1,22 @@
 import '/components/oline_persona_voice_chronicle_like_widget.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/index.dart';
 import 'oline_in_character_voice_world_infomations_widget.dart'
     show OlineInCharacterVoiceWorldInfomationsWidget;
 import 'package:flutter/material.dart';
 
 class OlineInCharacterVoiceWorldInfomationsModel
-    extends FlutterFlowModel<OlineInCharacterVoiceWorldInfomationsWidget> {
-
+    extends OlineRoleplayDialogueModel<
+        OlineInCharacterVoiceWorldInfomationsWidget> {
   int selectedTabIndex = 0;
 
-  late FlutterFlowDynamicModels<OlinePersonaVoiceChronicleLikeModel>
+  late OlineRoleplayDialogueDynamicModels<OlinePersonaVoiceChronicleLikeModel>
       olinePersonaVoiceChronicleLikeModels;
 
   @override
   void initState(BuildContext context) {
-    olinePersonaVoiceChronicleLikeModels =
-        FlutterFlowDynamicModels(() => OlinePersonaVoiceChronicleLikeModel());
+    olinePersonaVoiceChronicleLikeModels = OlineRoleplayDialogueDynamicModels(
+        () => OlinePersonaVoiceChronicleLikeModel());
   }
 
   @override

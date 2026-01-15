@@ -1,10 +1,11 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_roleplay_voice_mythos_report_details_widget.dart'
     show OlineRoleplayVoiceMythosReportDetailsWidget;
 import 'package:flutter/material.dart';
 
 class OlineRoleplayVoiceMythosReportDetailsModel
-    extends FlutterFlowModel<OlineRoleplayVoiceMythosReportDetailsWidget> {
+    extends OlineRoleplayDialogueModel<
+        OlineRoleplayVoiceMythosReportDetailsWidget> {
   List<String> olineVoiceRoleplayExchange = [
     'Harassment',
     'Inappropriate language',

@@ -1,8 +1,7 @@
 // ignore_for_file: unnecessary_getters_setters
 
-
 import 'index.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 
 class OlineFictionVoiceHallPostStruct extends BaseStruct {
   OlineFictionVoiceHallPostStruct({

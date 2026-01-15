@@ -8,8 +8,8 @@ import 'package:from_css_color/from_css_color.dart';
 import 'dart:math' show pow, pi, sin;
 import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
-import 'package:oline/flutter_flow/platform_utils/platform_util_stub.dart';
-import 'package:oline/flutter_flow/uploaded_file.dart';
+import 'package:oline/olineCharacte_fableVerse/platform_utils/platform_util_stub.dart';
+import 'package:oline/olineCharacte_fableVerse/olineCharacte_fableVerse_upload.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cross_file/cross_file.dart';
@@ -20,7 +20,7 @@ import '../main.dart';
 
 export '../app_state.dart';
 export '../app_constants.dart';
-export 'flutter_flow_model.dart';
+export 'olineCharacte_fableVerse_model.dart';
 export 'dart:math' show min, max;
 export 'dart:typed_data' show Uint8List;
 export 'dart:convert' show jsonEncode, jsonDecode;
@@ -128,30 +128,6 @@ bool get isAndroid => !kIsWeb && Platform.isAndroid;
 bool get isiOS => !kIsWeb && Platform.isIOS;
 bool get isWeb => kIsWeb;
 
-const kBreakpointSmall = 479.0;
-const kBreakpointMedium = 767.0;
-const kBreakpointLarge = 991.0;
-bool isMobileWidth(BuildContext context) =>
-    MediaQuery.sizeOf(context).width < kBreakpointSmall;
-bool responsiveVisibility({
-  required BuildContext context,
-  bool phone = true,
-  bool tablet = true,
-  bool tabletLandscape = true,
-  bool desktop = true,
-}) {
-  final width = MediaQuery.sizeOf(context).width;
-  if (width < kBreakpointSmall) {
-    return phone;
-  } else if (width < kBreakpointMedium) {
-    return tablet;
-  } else if (width < kBreakpointLarge) {
-    return tabletLandscape;
-  } else {
-    return desktop;
-  }
-}
-
 const kTextValidatorUsernameRegex = r'^[a-zA-Z][a-zA-Z0-9_-]{2,16}$';
 // https://stackoverflow.com/a/201378
 const kTextValidatorEmailRegex =
@@ -159,7 +135,7 @@ const kTextValidatorEmailRegex =
 const kTextValidatorWebsiteRegex =
     r'(https?:\/\/)?(www\.)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|(https?:\/\/)?(www\.)?(?!ww)[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)';
 
-extension FFTextEditingControllerExt on TextEditingController? {
+extension OlineCharacterVoiceArchitecture on TextEditingController? {
   String get text => this == null ? '' : this!.text;
   set text(String newText) => this?.text = newText;
 }
@@ -185,37 +161,8 @@ extension IterableExt<T> on Iterable<T> {
 void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
     MyApp.of(context).setThemeMode(themeMode);
 
-void showSnackbar(
-  BuildContext context,
-  String message, {
-  bool loading = false,
-  int duration = 4,
-}) {
-  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Row(
-        children: [
-          if (loading)
-            Padding(
-              padding: EdgeInsetsDirectional.only(end: 10.0),
-              child: Container(
-                height: 20,
-                width: 20,
-                child: const CircularProgressIndicator(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          Text(message),
-        ],
-      ),
-      duration: Duration(seconds: duration),
-    ),
-  );
-}
 
-extension FFStringExt on String {
+extension OlineRoleplayDialogueMatrix on String {
   String maybeHandleOverflow({int? maxChars, String replacement = ''}) =>
       maxChars != null && length > maxChars
           ? replaceRange(maxChars, null, replacement)
@@ -317,17 +264,15 @@ Future<void> startAudioRecording(
     if (!context.mounted) {
       return;
     }
-    showSnackbar(
-      context,
-      'You have not provided permission to record audio.',
-    );
+   
   }
 }
 
 Future<void> stopAudioRecording({
   required AudioRecorder? audioRecorder,
   required String audioName,
-  required Function(String?, FFUploadedFile) onRecordingComplete,
+  required Function(String?, OlineVoiceRoleplayConstellation)
+      onRecordingComplete,
 }) async {
   if (audioRecorder == null) {
     return;
@@ -340,7 +285,7 @@ Future<void> stopAudioRecording({
     return;
   }
 
-  final recordedFileBytes = FFUploadedFile(
+  final recordedFileBytes = OlineVoiceRoleplayConstellation(
     name: '$audioName.m4a',
     bytes: await XFile(recordedPath!).readAsBytes(),
   );

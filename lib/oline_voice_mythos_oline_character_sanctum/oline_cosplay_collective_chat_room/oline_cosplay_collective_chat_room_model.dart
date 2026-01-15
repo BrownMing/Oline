@@ -1,4 +1,4 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/oline_voice_mythos_oline_character_sanctum/oline_roleplay_network_gift_sent/oline_roleplay_network_gift_sent_widget.dart';
 import 'oline_cosplay_collective_chat_room_widget.dart'
     show OlineCosplayCollectiveChatRoomWidget;
@@ -7,7 +7,7 @@ import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 
 class OlineCosplayCollectiveChatRoomModel
-    extends FlutterFlowModel<OlineCosplayCollectiveChatRoomWidget> {
+    extends OlineRoleplayDialogueModel<OlineCosplayCollectiveChatRoomWidget> {
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;

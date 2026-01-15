@@ -1,11 +1,10 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'oline_cosplay_engine_forget_password_widget.dart'
     show OlineCosplayEngineForgetPasswordWidget;
 import 'package:flutter/material.dart';
 
 class OlineCosplayEngineForgetPasswordModel
-    extends FlutterFlowModel<OlineCosplayEngineForgetPasswordWidget> {
-
+    extends OlineRoleplayDialogueModel<OlineCosplayEngineForgetPasswordWidget> {
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;

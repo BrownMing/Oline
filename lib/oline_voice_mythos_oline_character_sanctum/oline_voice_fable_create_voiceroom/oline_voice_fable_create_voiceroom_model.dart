@@ -1,11 +1,11 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'package:image_picker/image_picker.dart';
 import 'oline_voice_fable_create_voiceroom_widget.dart'
     show OlineVoiceFableCreateVoiceroomWidget;
 import 'package:flutter/material.dart';
 
 class OlineVoiceFableCreateVoiceroomModel
-    extends FlutterFlowModel<OlineVoiceFableCreateVoiceroomWidget> {
+    extends OlineRoleplayDialogueModel<OlineVoiceFableCreateVoiceroomWidget> {
   List<String> olineCosplayPersonaSystem = [
     'American comics',
     'Manga',

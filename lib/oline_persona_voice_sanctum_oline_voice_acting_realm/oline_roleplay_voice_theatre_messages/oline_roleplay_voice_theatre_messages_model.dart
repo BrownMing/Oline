@@ -1,4 +1,4 @@
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import '/index.dart';
 import 'oline_roleplay_voice_theatre_messages_widget.dart'
     show OlineRoleplayVoiceTheatreMessagesWidget;
@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:record/record.dart';
 import 'package:path_provider/path_provider.dart';
 
-class OlineRoleplayVoiceTheatreMessagesModel
-    extends FlutterFlowModel<OlineRoleplayVoiceTheatreMessagesWidget> {
+class OlineRoleplayVoiceTheatreMessagesModel extends OlineRoleplayDialogueModel<
+    OlineRoleplayVoiceTheatreMessagesWidget> {
   bool? olinePersonaDialogueVerseShow;
 
   FocusNode? textFieldFocusNode;

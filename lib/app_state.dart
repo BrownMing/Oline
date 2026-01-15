@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'flutter_flow/flutter_flow_util.dart';
+import 'olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 
-class FFAppState extends ChangeNotifier {
-  static FFAppState _instance = FFAppState._internal();
+class OlineImmersiveRoleplayEngine extends ChangeNotifier {
+  static OlineImmersiveRoleplayEngine _instance =
+      OlineImmersiveRoleplayEngine._internal();
 
-  factory FFAppState() {
+  factory OlineImmersiveRoleplayEngine() {
     return _instance;
   }
 
-  FFAppState._internal();
+  OlineImmersiveRoleplayEngine._internal();
 
   static void reset() {
-    _instance = FFAppState._internal();
+    _instance = OlineImmersiveRoleplayEngine._internal();
   }
 
   Future initializePersistedState() async {

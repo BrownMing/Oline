@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import 'flutter_flow/flutter_flow_util.dart';
+import 'olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import 'olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -15,9 +15,10 @@ void main() async {
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
 
-  await FlutterFlowTheme.initialize();
+  await OlineRoleplayDialogueTheme.initialize();
 
-  final appState = FFAppState(); // Initialize FFAppState
+  final appState =
+      OlineImmersiveRoleplayEngine(); // Initialize OlineImmersiveRoleplayEngine
   await appState.initializePersistedState();
 
   runApp(ChangeNotifierProvider(
@@ -35,7 +36,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = OlineRoleplayDialogueTheme.themeMode;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
@@ -67,7 +68,7 @@ class _MyAppState extends State<MyApp> {
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
         _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
+        OlineRoleplayDialogueTheme.saveThemeMode(mode);
       });
 
   @override

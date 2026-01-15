@@ -1,6 +1,6 @@
 import '../../oline_persona_voice_sanctum_oline_voice_acting_realm/oline_voice_roleplay_continuum_empty/oline_voice_roleplay_continuum_empty_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_theme.dart';
+import '../../olineCharacte_fableVerse/olineCharacte_fableVerse_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +45,7 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
+    context.watch<OlineImmersiveRoleplayEngine>();
 
     return GestureDetector(
       onTap: () {
@@ -54,7 +54,7 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).info,
+        backgroundColor: OlineRoleplayDialogueTheme.of(context).info,
         body: Stack(
           children: [
             Container(
@@ -101,22 +101,25 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                         ),
                         Text(
                           '${widget.olineCosplayVoiceContinuum}',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FlutterFlowTheme.of(context)
+                          style: OlineRoleplayDialogueTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.bold,
+                                  fontStyle:
+                                      OlineRoleplayDialogueTheme.of(context)
                                           .bodyMedium
                                           .fontStyle,
-                                    ),
-                                    color: Colors.black,
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
+                                ),
+                                color: Colors.black,
+                                fontSize: 20.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.bold,
+                                fontStyle:
+                                    OlineRoleplayDialogueTheme.of(context)
                                         .bodyMedium
                                         .fontStyle,
-                                  ),
+                              ),
                         ),
                         Container(
                           width: 34.0,
@@ -132,22 +135,25 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                           EdgeInsetsDirectional.fromSTEB(12.0, 25.0, 12.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          final olineImmersivePersonaRealm =
-                              widget.olineCosplayVoiceContinuum == 'Fans'
-                                  ? FFAppState()
-                                          .olineImmersiveVoiceUsers
-                                          .elementAtOrNull(FFAppState()
+                          final olineImmersivePersonaRealm = widget
+                                      .olineCosplayVoiceContinuum ==
+                                  'Fans'
+                              ? OlineImmersiveRoleplayEngine()
+                                      .olineImmersiveVoiceUsers
+                                      .elementAtOrNull(
+                                          OlineImmersiveRoleplayEngine()
                                               .olinePersonaUniverseLoginToken)
-                                          ?.olineRoleplayLoungeUserFans
-                                          .toList() ??
-                                      []
-                                  : FFAppState()
-                                          .olineImmersiveVoiceUsers
-                                          .elementAtOrNull(FFAppState()
+                                      ?.olineRoleplayLoungeUserFans
+                                      .toList() ??
+                                  []
+                              : OlineImmersiveRoleplayEngine()
+                                      .olineImmersiveVoiceUsers
+                                      .elementAtOrNull(
+                                          OlineImmersiveRoleplayEngine()
                                               .olinePersonaUniverseLoginToken)
-                                          ?.olineRoleplayLoungeUserFollowings
-                                          .toList() ??
-                                      [];
+                                      ?.olineRoleplayLoungeUserFollowings
+                                      .toList() ??
+                                  [];
                           if (olineImmersivePersonaRealm.isEmpty) {
                             return Center(
                                 child:
@@ -180,7 +186,7 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.asset(
-                                          FFAppState()
+                                          OlineImmersiveRoleplayEngine()
                                               .olineImmersiveVoiceUsers
                                               .elementAtOrNull(
                                                   olineImmersivePersonaRealmItem)!
@@ -189,14 +195,16 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                         ),
                                       ),
                                       Text(
-                                        '${FFAppState().olineImmersiveVoiceUsers.elementAtOrNull(olineImmersivePersonaRealmItem)?.olineRoleplayLoungeUserName}',
-                                        style: FlutterFlowTheme.of(context)
+                                        '${OlineImmersiveRoleplayEngine().olineImmersiveVoiceUsers.elementAtOrNull(olineImmersivePersonaRealmItem)?.olineRoleplayLoungeUserName}',
+                                        style: OlineRoleplayDialogueTheme.of(
+                                                context)
                                             .bodyMedium
                                             .override(
                                               font: GoogleFonts.roboto(
                                                 fontWeight: FontWeight.w500,
                                                 fontStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    OlineRoleplayDialogueTheme
+                                                            .of(context)
                                                         .bodyMedium
                                                         .fontStyle,
                                               ),
@@ -205,7 +213,8 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.w500,
                                               fontStyle:
-                                                  FlutterFlowTheme.of(context)
+                                                  OlineRoleplayDialogueTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
@@ -214,10 +223,11 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      if (!FFAppState()
+                                      if (!OlineImmersiveRoleplayEngine()
                                           .olineImmersiveVoiceUsers
-                                          .elementAtOrNull(FFAppState()
-                                              .olinePersonaUniverseLoginToken)!
+                                          .elementAtOrNull(
+                                              OlineImmersiveRoleplayEngine()
+                                                  .olinePersonaUniverseLoginToken)!
                                           .olineRoleplayLoungeUserFollowings
                                           .contains(
                                               olineImmersivePersonaRealmItem)) {
@@ -227,9 +237,9 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            FFAppState()
+                                            OlineImmersiveRoleplayEngine()
                                                 .updateOlineImmersiveVoiceUsersAtIndex(
-                                              FFAppState()
+                                              OlineImmersiveRoleplayEngine()
                                                   .olinePersonaUniverseLoginToken,
                                               (e) => e
                                                 ..updateOlineRoleplayLoungeUserFollowings(
@@ -237,7 +247,8 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                                       olineImmersivePersonaRealmItem),
                                                 ),
                                             );
-                                            FFAppState().update(() {});
+                                            OlineImmersiveRoleplayEngine()
+                                                .update(() {});
                                           },
                                           child: Container(
                                             width: 76.0,
@@ -259,9 +270,9 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            FFAppState()
+                                            OlineImmersiveRoleplayEngine()
                                                 .updateOlineImmersiveVoiceUsersAtIndex(
-                                              FFAppState()
+                                              OlineImmersiveRoleplayEngine()
                                                   .olinePersonaUniverseLoginToken,
                                               (e) => e
                                                 ..updateOlineRoleplayLoungeUserFollowings(
@@ -269,7 +280,8 @@ class _OlineVoicePersonaCoreFansFollowingWidgetState
                                                       olineImmersivePersonaRealmItem),
                                                 ),
                                             );
-                                            FFAppState().update(() {});
+                                            OlineImmersiveRoleplayEngine()
+                                                .update(() {});
                                           },
                                           child: Container(
                                             width: 76.0,
