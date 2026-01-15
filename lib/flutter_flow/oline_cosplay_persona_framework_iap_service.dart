@@ -24,28 +24,33 @@ class OlineCosplayRechargeProducts {
   static const List<OlineVoiceCrystalProduct> olineVoiceProductList = [
     OlineVoiceCrystalProduct(
       productId: 'com.Folgo.xiao.02',
-      price: 1.99,
-      diamonds: 13,
+      price: 6.99,
+      diamonds: 48,
     ),
     OlineVoiceCrystalProduct(
       productId: 'com.Folgo.xiao.01',
-      price: 7.99,
-      diamonds: 58,
+      price: 2.99,
+      diamonds: 19,
     ),
     OlineVoiceCrystalProduct(
       productId: 'com.Folgo.xiao.03',
-      price: 19.99,
-      diamonds: 155,
+      price: 16.99,
+      diamonds: 126,
     ),
     OlineVoiceCrystalProduct(
       productId: 'com.Folgo.xiao.04',
-      price: 39.99,
-      diamonds: 336,
+      price: 36.99,
+      diamonds: 306,
     ),
     OlineVoiceCrystalProduct(
       productId: 'com.Folgo.xiao.05',
-      price: 69.99,
-      diamonds: 630,
+      price: 66.99,
+      diamonds: 600,
+    ),
+    OlineVoiceCrystalProduct(
+      productId: 'com.Folgo.xiao.05',
+      price: 99.99,
+      diamonds: 1000,
     ),
   ];
 
